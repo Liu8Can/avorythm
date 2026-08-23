@@ -2,6 +2,13 @@
 
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and semantic versioning.
 
+## [1.1.11] - 2026-08-23
+
+### Changed
+
+- State the extension's AI-powered translation purpose explicitly in both English and Persian package descriptions, keeping the installed extension and Chrome Web Store listing consistent.
+- Refresh the bilingual Chrome Web Store settings screenshots from the current extension UI and prepare localized submission copy and reviewer instructions.
+
 ## [1.1.10] - 2026-08-22
 
 ### Changed
@@ -412,7 +419,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - Automatic audio-device detection and Windows Volume Mixer handoff.
 - Tests, static analysis, release packaging, security policy, and contributor templates.
 
-[Unreleased]: https://github.com/msmahdinejad/avorythm/compare/v1.1.10...HEAD
+[Unreleased]: https://github.com/msmahdinejad/avorythm/compare/v1.1.11...HEAD
+[1.1.11]: https://github.com/msmahdinejad/avorythm/compare/v1.1.10...v1.1.11
 [1.1.10]: https://github.com/msmahdinejad/avorythm/compare/v1.1.9...v1.1.10
 [1.1.9]: https://github.com/msmahdinejad/avorythm/compare/v1.1.8...v1.1.9
 [1.1.8]: https://github.com/msmahdinejad/avorythm/compare/v1.1.7...v1.1.8

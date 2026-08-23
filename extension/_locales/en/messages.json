@@ -1,5 +1,5 @@
 {
   "appName": {"message": "Avorythm — Live Translation"},
-  "appDescription": {"message": "Translate, dub, or caption a tab live with Gemini, with optional buffered playback for tighter sync."},
+  "appDescription": {"message": "Translate, dub, and caption a selected tab live with Gemini AI, plus an optional synchronized player."},
   "actionTitle": {"message": "Open Avorythm live translation"}
 }
