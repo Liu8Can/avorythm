@@ -2,6 +2,12 @@
 
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and semantic versioning.
 
+## [1.1.12] - 2026-09-01
+
+### Changed
+
+- Update the supported Python runtime and build toolchain to google-genai 2.20.0, sounddevice 0.5.6, python-dotenv 1.2.3, uvicorn 0.52.4, mypy 2.3.1, ruff 0.16.5, and PyInstaller 6.22.2.
+
 ## [1.1.11] - 2026-08-23
 
 ### Changed
@@ -419,7 +425,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - Automatic audio-device detection and Windows Volume Mixer handoff.
 - Tests, static analysis, release packaging, security policy, and contributor templates.
 
-[Unreleased]: https://github.com/msmahdinejad/avorythm/compare/v1.1.11...HEAD
+[Unreleased]: https://github.com/msmahdinejad/avorythm/compare/v1.1.12...HEAD
+[1.1.12]: https://github.com/msmahdinejad/avorythm/compare/v1.1.11...v1.1.12
 [1.1.11]: https://github.com/msmahdinejad/avorythm/compare/v1.1.10...v1.1.11
 [1.1.10]: https://github.com/msmahdinejad/avorythm/compare/v1.1.9...v1.1.10
 [1.1.9]: https://github.com/msmahdinejad/avorythm/compare/v1.1.8...v1.1.9

@@ -1,5 +1,5 @@
-import {wavHeader} from '../../extension/core.mjs?v=1.1.11';
-import {buildMixedRecording} from '../../extension/recording-export.mjs?v=1.1.11';
+import {wavHeader} from '../../extension/core.mjs?v=1.1.12';
+import {buildMixedRecording} from '../../extension/recording-export.mjs?v=1.1.12';
 
 const result = document.querySelector('#result');
 result.textContent = 'READY-MODULE';
