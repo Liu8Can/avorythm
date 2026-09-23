@@ -340,7 +340,7 @@ function stop(requestingTabId = null, keepPlayer = false, completionReason = 'ma
 chrome.runtime.onInstalled.addListener(async () => {
   await chrome.storage.session.set({state: defaultState});
   const {settings} = await chrome.storage.local.get('settings');
-  if (!settings) await chrome.storage.local.set({settings: DEFAULT_SETTINGS});
+  if (!settings) await chrome.storage.local.set({settings: normalizeSettings(DEFAULT_SETTINGS)});
   else await chrome.storage.local.set({settings: normalizeSettings(settings)});
 });
 

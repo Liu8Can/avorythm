@@ -7,6 +7,7 @@ import {
   audioMessage,
   base64ToBytes,
   captionSegments,
+  detectSystemLocale,
   fileVoiceSetupMessage,
   groqReadinessError,
   latestCaption,
@@ -233,9 +234,9 @@ test('ships a dedicated synchronized player and separate settings page', () => {
   assert.match(sourceBridge, /source-media-state/);
 });
 
-test('defaults new extension installs to English with a twenty-second recording lead', () => {
+test('defaults new extension installs to the system locale with a twenty-second recording lead', () => {
   const settings = normalizeSettings();
-  assert.equal(settings.locale, 'en');
+  assert.equal(settings.locale, detectSystemLocale());
   assert.equal(settings.syncBufferSeconds, 20);
   assert.equal(settings.syncCaptionEngine, 'gemini');
 });
