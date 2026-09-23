@@ -2,7 +2,7 @@
 
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and semantic versioning.
 
-## [Unreleased]
+## [1.1.13] - 2026-09-23
 
 ### Fixed
 
@@ -440,7 +440,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - Automatic audio-device detection and Windows Volume Mixer handoff.
 - Tests, static analysis, release packaging, security policy, and contributor templates.
 
-[Unreleased]: https://github.com/msmahdinejad/avorythm/compare/v1.1.12...HEAD
+[Unreleased]: https://github.com/msmahdinejad/avorythm/compare/v1.1.13...HEAD
+[1.1.13]: https://github.com/msmahdinejad/avorythm/compare/v1.1.12...v1.1.13
 [1.1.12]: https://github.com/msmahdinejad/avorythm/compare/v1.1.11...v1.1.12
 [1.1.11]: https://github.com/msmahdinejad/avorythm/compare/v1.1.10...v1.1.11
 [1.1.10]: https://github.com/msmahdinejad/avorythm/compare/v1.1.9...v1.1.10

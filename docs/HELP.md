@@ -71,7 +71,7 @@ File Studio keeps the source and generated outputs on your computer. It sends ex
 
 ### Install
 
-Install the published extension from Chrome Web Store, or extract `Avorythm-Extension.zip`, open `chrome://extensions`, enable **Developer mode**, choose **Load unpacked**, and select the extracted folder. Pin Avorythm for quick access.
+Install [Avorythm from the Chrome Web Store](https://chromewebstore.google.com/detail/avorythm-live-translation/kbdbbedijheicmmmoidamdaodjbhjje), or extract `Avorythm-Extension.zip`, open `chrome://extensions`, enable **Developer mode**, choose **Load unpacked**, and select the extracted folder. Pin Avorythm for quick access.
 
 ### First-time setup — required
 

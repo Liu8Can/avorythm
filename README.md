@@ -21,6 +21,7 @@
 
 <p align="center">
   <a href="README.fa.md">فارسی</a> ·
+  <a href="https://chromewebstore.google.com/detail/avorythm-live-translation/kbdbbedijheicmmnmoidamdaodjbhjje">Install the Chrome extension</a> ·
   <a href="docs/HELP.md">User guide</a> ·
   <a href="docs/INSTALLATION.md">Installation</a> ·
   <a href="PRIVACY.md">Privacy</a> ·
@@ -68,6 +69,9 @@ The app needs a Gemini API key. Media Studio additionally needs a Groq API key f
 Keys are stored in the operating-system keyring.
 
 ### Browser extension
+
+[Install Avorythm from the Chrome Web Store](https://chromewebstore.google.com/detail/avorythm-live-translation/kbdbbedijheicmmnmoidamdaodjbhjje)
+or use the manual release package below.
 
 For a manual installation from a GitHub release:
 

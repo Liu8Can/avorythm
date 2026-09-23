@@ -152,7 +152,7 @@ test('keeps the key session-only and starts tab capture without the desktop app'
   assert.equal(local.settings.onPageOutput.originalAudioEnabled, false);
   assert.equal(local.settings.synchronizedOutput.dubAudioEnabled, true);
   assert.equal(local.settings.synchronizedOutput.originalAudioEnabled, false);
-  assert.equal(local.settings.locale, detectSystemLocale());
+  assert.equal(local.settings.locale, 'en');
 
   response = await message({type: 'set-key', apiKey: 'test-api-key-123'});
   assert.equal(response.ok, true);

@@ -9,7 +9,7 @@
 
 import {readFileSync, readdirSync, existsSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
-import {dirname, join} from 'node:path';
+import {dirname, join, resolve} from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (rel) => readFileSync(join(root, rel), 'utf8');
@@ -40,7 +40,7 @@ const EXPECTED_LOCALES = ['fa', 'en', 'zh-Hans'];
  * arm of `messages`).  Keys like `navLive: '...'` or `selectedCount: (c)=>…`
  * are captured; nested objects/braces are ignored.
  */
-function extractKeys(blockSrc) {
+export function extractKeys(blockSrc) {
   const keys = new Set();
   // Match `identifier:` or `'identifier':` at the start of a key-value pair.
   // We walk the string tracking brace depth so nested objects are skipped.
@@ -78,14 +78,14 @@ function extractKeys(blockSrc) {
  * (e.g. `messages` or `copy`), return a Map<locale, Set<key>>.
  * Handles both `fa: {…}` and `'zh-Hans': {…}` key styles.
  */
-function parseDictionary(src, varName) {
+export function parseDictionary(src, varName, expectedLocales = EXPECTED_LOCALES) {
   const result = new Map();
   // Match `varName = {` … `};`  (the top-level dictionary assignment).
   const dictStart = src.indexOf(`${varName} = {`);
   if (dictStart === -1) return result;
   const dictBody = src.slice(dictStart);
 
-  for (const locale of EXPECTED_LOCALES) {
+  for (const locale of expectedLocales) {
     // Find the locale arm: either `fa: {` or `'zh-Hans': {`.
     const patterns = [
       new RegExp(`(^|\\n)\\s*${locale}:\\s*\\{`),
@@ -112,14 +112,14 @@ function parseDictionary(src, varName) {
 
   // Also collect standalone assignments like `messages.fa.projectHomepage = '…'`.
   const standaloneRe = new RegExp(
-    `${varName}\\[['"]?(\\w|[-])+(?:['"])?\\]\\.(\\w+)\\s*=|${varName}\\.(\\w+)\\.(\\w+)\\s*=`,
+    `${varName}(?:\\.([A-Za-z][A-Za-z0-9_-]*)|\\[['"]([^'"]+)['"]\\])\\s*\\.\\s*([A-Za-z_$][A-Za-z0-9_$]*)\\s*=`,
     'g'
   );
   let m;
   while ((m = standaloneRe.exec(src)) !== null) {
-    const locale = m[2] ? m[1] : m[4]; // captured locale
-    const key = m[2] || m[5];
-    if (EXPECTED_LOCALES.includes(locale)) {
+    const locale = m[1] || m[2];
+    const key = m[3];
+    if (expectedLocales.includes(locale)) {
       if (!result.has(locale)) result.set(locale, new Set());
       result.get(locale).add(key);
     }
@@ -160,31 +160,31 @@ function checkJsDictionary(filePath, varName) {
 // help.html and audio-guide.html use data-en / data-fa / data-zh-hans
 // attributes on elements.  Every translated element must have all three.
 
+export function findHtmlDataAttributeIssues(src) {
+  const attrs = ['data-en', 'data-fa', 'data-zh-hans'];
+  const issues = [];
+  for (const match of src.matchAll(/<[a-z][^>]*>/giu)) {
+    const tag = match[0];
+    const present = attrs.filter((attr) => new RegExp(`\\b${attr}\\s*=`, 'iu').test(tag));
+    if (!present.length || present.length === attrs.length) continue;
+    issues.push({tag, missing: attrs.filter((attr) => !present.includes(attr))});
+  }
+  return issues;
+}
+
 function checkHtmlDataAttrs(filePath, anchorAttr) {
   console.log(`\n📄 ${filePath} (data-* attributes)`);
   const src = read(filePath);
 
-  const attrs = ['data-en', 'data-fa', 'data-zh-hans'];
-  const counts = {};
-  for (const attr of attrs) {
-    counts[attr] = (src.match(new RegExp(`${attr}=`, 'g')) || []).length;
-  }
-
-  const values = Object.values(counts);
-  const allSame = values.every((v) => v === values[0]);
-  if (allSame && values[0] > 0) {
-    ok(`All ${attrs.length} data-* attributes: ${values[0]} each, balanced`);
-  } else {
-    for (const attr of attrs) {
-      fail(`${attr}: ${counts[attr]} occurrences (imbalance)`);
-    }
-  }
+  const issues = findHtmlDataAttributeIssues(src);
+  if (!issues.length) ok('Every translated element has data-en, data-fa, and data-zh-hans');
+  else issues.forEach(({tag, missing}) => fail(`Translated element is missing ${missing.join(', ')}: ${tag.slice(0, 120)}`));
 }
 
 // ── 3. Chrome extension _locales completeness ──────────────────────────
 // Every _locales/<lang>/messages.json must contain every __MSG_*__ key
 // referenced in manifest.json.  Also verifies a _locales dir exists for
-// each expected locale (fa→fa, en→en, zh-Hans→zh).
+// each expected locale (fa→fa, en→en, zh-Hans→zh_CN).
 
 function checkExtensionLocales() {
   console.log('\n📄 extension/_locales/ (Chrome i18n)');
@@ -200,8 +200,8 @@ function checkExtensionLocales() {
   }
   ok(`Manifest references ${msgKeys.size} message key(s): ${[...msgKeys].join(', ')}`);
 
-  // Map internal locale codes to _locales directory names.
-  const localeDirMap = {'fa': 'fa', 'en': 'en', 'zh-Hans': 'zh'};
+  // Map internal locale codes to Chrome's locale directory names.
+  const localeDirMap = {'fa': 'fa', 'en': 'en', 'zh-Hans': 'zh_CN'};
   const localesDir = join(root, 'extension', '_locales');
 
   for (const [locale, dirName] of Object.entries(localeDirMap)) {
@@ -247,36 +247,38 @@ function checkSelectOptions(filePath) {
 
 // ── Run all checks ─────────────────────────────────────────────────────
 
-console.log('═══ Avorythm i18n Consistency Check ═══');
-console.log(`Expected locales: ${EXPECTED_LOCALES.join(', ')}\n`);
+export function runChecks() {
+  failures = 0;
+  console.log('═══ Avorythm i18n Consistency Check ═══');
+  console.log(`Expected locales: ${EXPECTED_LOCALES.join(', ')}\n`);
 
-console.log('── JS Dictionary Key Alignment ──');
-checkJsDictionary('src/avorythm/static/app.js', 'messages');
-checkJsDictionary('extension/options.js', 'copy');
-checkJsDictionary('extension/popup.js', 'copy');
-checkJsDictionary('extension/player.js', 'copy');
+  console.log('── JS Dictionary Key Alignment ──');
+  checkJsDictionary('src/avorythm/static/app.js', 'messages');
+  checkJsDictionary('extension/options.js', 'copy');
+  checkJsDictionary('extension/popup.js', 'copy');
+  checkJsDictionary('extension/player.js', 'copy');
 
-console.log('\n── HTML data-* Attribute Completeness ──');
-checkHtmlDataAttrs('src/avorythm/static/help.html');
-checkHtmlDataAttrs('src/avorythm/static/audio-guide.html');
+  console.log('\n── HTML data-* Attribute Completeness ──');
+  checkHtmlDataAttrs('src/avorythm/static/help.html');
+  checkHtmlDataAttrs('src/avorythm/static/audio-guide.html');
 
-console.log('\n── <select> localeToggle Options ──');
-checkSelectOptions('src/avorythm/static/index.html');
-checkSelectOptions('src/avorythm/static/help.html');
-checkSelectOptions('src/avorythm/static/audio-guide.html');
-checkSelectOptions('extension/options.html');
-checkSelectOptions('extension/popup.html');
-checkSelectOptions('extension/player.html');
+  console.log('\n── <select> localeToggle Options ──');
+  checkSelectOptions('src/avorythm/static/index.html');
+  checkSelectOptions('src/avorythm/static/help.html');
+  checkSelectOptions('src/avorythm/static/audio-guide.html');
+  checkSelectOptions('extension/options.html');
+  checkSelectOptions('extension/popup.html');
+  checkSelectOptions('extension/player.html');
 
-console.log('\n── Chrome Extension _locales ──');
-checkExtensionLocales();
+  console.log('\n── Chrome Extension _locales ──');
+  checkExtensionLocales();
 
-// ── Summary ────────────────────────────────────────────────────────────
-console.log('\n════════════════════════════════════════');
-if (failures === 0) {
-  console.log('✅ All i18n checks passed.');
-  process.exit(0);
-} else {
-  console.error(`❌ ${failures} i18n check(s) failed.`);
-  process.exit(1);
+  console.log('\n════════════════════════════════════════');
+  if (failures === 0) console.log('✅ All i18n checks passed.');
+  else console.error(`❌ ${failures} i18n check(s) failed.`);
+  return failures;
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  process.exit(runChecks() ? 1 : 0);
 }

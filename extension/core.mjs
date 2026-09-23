@@ -33,7 +33,9 @@ export const DEFAULT_OUTPUT_MIX = Object.freeze({
 });
 
 export const DEFAULT_SETTINGS = Object.freeze({
-  locale: '',
+  // Open the extension in English on first install; users can opt into a
+  // supported locale from the language selector.
+  locale: 'en',
   targetLanguage: 'fa',
   consentVersion: 0,
   groqAudioConsentVersion: 0,
@@ -80,7 +82,7 @@ function legacyOutputMix(input) {
 export function detectSystemLocale() {
   const uiLang = typeof chrome !== 'undefined' && chrome?.i18n?.getUILanguage?.();
   const lang = (uiLang || navigator?.language || 'en').toLowerCase();
-  if (lang.startsWith('zh')) return 'zh-Hans';
+  if (/^zh(?:[-_]?(?:cn|sg|hans))(?:[-_]|$)/u.test(lang)) return 'zh-Hans';
   if (lang.startsWith('fa')) return 'fa';
   return 'en';
 }
@@ -93,7 +95,7 @@ export function normalizeSettings(input = {}) {
     onPageOutput: normalizeOutputMix({...legacy, ...input.onPageOutput}),
     synchronizedOutput: normalizeOutputMix({...legacy, ...input.synchronizedOutput})
   };
-  if (!settings.locale) settings.locale = detectSystemLocale();
+  if (!settings.locale) settings.locale = DEFAULT_SETTINGS.locale;
   for (const field of OUTPUT_FIELDS) delete settings[field];
   delete settings.audioMode;
   delete settings.subtitleShowSource;
