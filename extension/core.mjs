@@ -78,7 +78,8 @@ function legacyOutputMix(input) {
 }
 
 export function detectSystemLocale() {
-  const lang = (chrome?.i18n?.getUILanguage?.() || navigator?.language || 'en').toLowerCase();
+  const uiLang = typeof chrome !== 'undefined' && chrome?.i18n?.getUILanguage?.();
+  const lang = (uiLang || navigator?.language || 'en').toLowerCase();
   if (lang.startsWith('zh')) return 'zh-Hans';
   if (lang.startsWith('fa')) return 'fa';
   return 'en';
