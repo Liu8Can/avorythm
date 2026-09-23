@@ -309,5 +309,13 @@ test('keeps the key session-only and starts tab capture without the desktop app'
   assert.equal(response.state.status, 'error');
   assert.equal(response.state.captureTabId, null);
 
-  assert.deepEqual(removedTabs, [73]);
+  assert.deepEqual(removedTabs.filter((id) => id === 73), [73]);
+
+  // syncRestartFromStart: true → pause, seek(0), play (at the end so it doesn't interfere with earlier assertions)
+  sourceControls.length = 0;
+  const restartConfig = {...synchronizedSettings, syncRestartFromStart: true};
+  response = await message({type: 'start', config: restartConfig});
+  assert.equal(response.ok, true);
+  assert.deepEqual(sourceControls, ['pause', 0, 'play'],
+    'syncRestartFromStart must insert a seek(0) between pause and play');
 });

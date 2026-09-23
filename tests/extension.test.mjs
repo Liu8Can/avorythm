@@ -239,6 +239,12 @@ test('defaults new extension installs to English with a twenty-second recording 
   assert.equal(settings.locale, 'en');
   assert.equal(settings.syncBufferSeconds, 20);
   assert.equal(settings.syncCaptionEngine, 'gemini');
+  assert.equal(settings.syncRestartFromStart, false);
+});
+
+test('offers a restart-from-start option in the synchronized playback mode', () => {
+  const popup = readFileSync(new URL('../extension/popup.html', import.meta.url), 'utf8');
+  assert.match(popup, /name="syncRestartFromStart"/);
 });
 
 test('only shipped simplified-Chinese system locales are localized automatically', () => {

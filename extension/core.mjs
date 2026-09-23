@@ -49,7 +49,8 @@ export const DEFAULT_SETTINGS = Object.freeze({
   playbackMode: 'low-latency',
   syncBufferSeconds: 20,
   syncCaptionEngine: 'gemini',
-  syncVoiceName: 'Kore'
+  syncVoiceName: 'Kore',
+  syncRestartFromStart: false
 });
 
 function normalizeOutputMix(input = {}) {
@@ -107,6 +108,7 @@ export function normalizeSettings(input = {}) {
   settings.syncBufferSeconds = Math.max(8, Math.min(60, Number(settings.syncBufferSeconds) || 20));
   settings.syncCaptionEngine = settings.syncCaptionEngine === 'whisper' ? 'whisper' : 'gemini';
   settings.syncVoiceName = VOICE_NAMES.includes(settings.syncVoiceName) ? settings.syncVoiceName : 'Kore';
+  settings.syncRestartFromStart = settings.syncRestartFromStart === true;
   return settings;
 }
 

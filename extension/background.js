@@ -106,6 +106,17 @@ async function controlSourceMedia(tabId, action) {
       if (!media) return {ok: false};
       const wasPaused = media.paused;
       if (nextAction === 'pause') media.pause();
+      else if (typeof nextAction === 'number') {
+        try {
+          await Promise.race([
+            new Promise((resolve) => {
+              media.addEventListener('seeked', resolve, {once: true});
+              media.currentTime = nextAction;
+            }),
+            new Promise((resolve) => setTimeout(resolve, 2000))
+          ]);
+        } catch { /* seek failed — continue with current position */ }
+      }
       else {
         try { await media.play(); }
         catch (error) { return {ok: false, wasPaused, paused: media.paused, error: error?.name || 'play_failed'}; }
@@ -211,6 +222,9 @@ async function performStart(config) {
     await chrome.scripting.executeScript({target: {tabId: tab.id}, files: ['source-bridge.js']});
     const paused = await controlSourceMedia(tab.id, 'pause');
     sourceMediaFound = Boolean(paused.ok);
+    if (sourceMediaFound && nextConfig.syncRestartFromStart) {
+      await controlSourceMedia(tab.id, 0);
+    }
     await chrome.storage.session.remove('playerSession');
   }
   await setState({

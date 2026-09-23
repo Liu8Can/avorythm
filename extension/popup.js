@@ -10,7 +10,7 @@ const copy = {
   fa: {
     tagline: 'ترجمهٔ زندهٔ همین تب', ready: 'آمادهٔ ترجمه', connecting: 'در حال اتصال…', connected: 'ترجمهٔ زنده فعال است', error: 'خطا در اتصال',
     setupNeeded: 'راه‌اندازی کوتاه لازم است', setupMessage: 'کلید Gemini را وارد کن و حتماً اجازهٔ ارسال صدای تب به Google Gemini را تأیید کن.', openSettings: 'بازکردن تنظیمات',
-    language: 'زبان مقصد', playbackMode: 'روش پخش', lowLatency: 'داخل همین صفحه', lowLatencyHelp: 'سریع‌ترین حالت برای صدا و زیرنویس زنده', synchronized: 'ضبط و پلیر هماهنگ', synchronizedHelp: 'ضبط جلوتر ادامه دارد؛ پلیر مستقل Seek و Fullscreen دارد', bestSync: 'سینک پایدار',
+    language: 'زبان مقصد', playbackMode: 'روش پخش', lowLatency: 'داخل همین صفحه', lowLatencyHelp: 'سریع‌ترین حالت برای صدا و زیرنویس زنده', synchronized: 'ضبط و پلیر هماهنگ', synchronizedHelp: 'ضبط جلوتر ادامه دارد؛ پلیر مستقل Seek و Fullscreen دارد', bestSync: 'سینک پایدار', restartFromStart: 'ضبط از ابتدای ویدئو', restartFromStartHelp: 'اگر خاموش باشد، ضبط از موقعیت فعلی شروع می‌شود',
     start: 'شروع ترجمه', stop: 'توقف ترجمه', startHint: 'صدای همین تب ترجمه می‌شود', syncHint: 'ضبط و پلیر هماهنگ در تب تازه باز می‌شود', stopHint: 'جلسه و دریافت صدا متوقف می‌شود',
     yourOutput: 'خروجی انتخاب‌شده', edit: 'ویرایش', selectedCount: (count) => `${count} مورد فعال`, noOutput: 'هیچ خروجی‌ای فعال نیست',
     originalAudio: 'صدای اصلی', dubbedAudio: 'صدای دوبله', sourceSubtitles: 'زیرنویس اصلی', translatedSubtitles: 'زیرنویس ترجمه',
@@ -23,7 +23,7 @@ const copy = {
   en: {
     tagline: 'Translate this tab live', ready: 'Ready to translate', connecting: 'Connecting…', connected: 'Live translation is active', error: 'Connection error',
     setupNeeded: 'Quick setup required', setupMessage: 'Add your Gemini key and explicitly confirm permission to send selected-tab audio to Google Gemini.', openSettings: 'Open settings',
-    language: 'Target language', playbackMode: 'Playback', lowLatency: 'On this page', lowLatencyHelp: 'Fastest live audio and subtitle path', synchronized: 'Synchronized recorder & player', synchronizedHelp: 'Capture runs ahead; the independent player can seek and fullscreen', bestSync: 'Stable sync',
+    language: 'Target language', playbackMode: 'Playback', lowLatency: 'On this page', lowLatencyHelp: 'Fastest live audio and subtitle path', synchronized: 'Synchronized recorder \u0026 player', synchronizedHelp: 'Capture runs ahead; the independent player can seek and fullscreen', bestSync: 'Stable sync', restartFromStart: 'Restart from video start', restartFromStartHelp: 'When off, recording starts from the current position',
     start: 'Start translating', stop: 'Stop translation', startHint: 'Audio from this tab will be translated', syncHint: 'The synchronized recorder opens in a new tab', stopHint: 'Stops capture and the live session',
     yourOutput: 'Selected output', edit: 'Edit', selectedCount: (count) => `${count} enabled`, noOutput: 'No output is enabled',
     originalAudio: 'Original audio', dubbedAudio: 'Dubbed audio', sourceSubtitles: 'Source subtitles', translatedSubtitles: 'Translated subtitles',
@@ -106,6 +106,7 @@ function renderSettings() {
   translate();
   fillLanguages();
   document.querySelector(`input[name="playbackMode"][value="${settings.playbackMode}"]`).checked = true;
+  document.querySelector('input[name="syncRestartFromStart"]').checked = settings.syncRestartFromStart;
   $('#actionHint').textContent = t(settings.playbackMode === 'synchronized' ? 'syncHint' : 'startHint');
   const items = outputItems();
   $('#outputCount').textContent = t('selectedCount')(items.length);
@@ -146,6 +147,7 @@ function renderState(state) {
   $('#toggleButton').disabled = !active && Boolean(setupError());
   $('#targetLanguage').disabled = active;
   document.querySelectorAll('input[name="playbackMode"]').forEach((input) => { input.disabled = active; });
+  document.querySelector('input[name="syncRestartFromStart"]').disabled = active;
   $('#languageBadge').textContent = `${(state.sourceLanguage || 'AUTO').toUpperCase()} → ${settings.targetLanguage.toUpperCase()}`;
   $('#downloadReady').hidden = !state.recordingReady;
   showError(state.error || '');
@@ -175,6 +177,10 @@ document.querySelectorAll('input[name="playbackMode"]').forEach((input) => input
   settings.playbackMode = input.value;
   await saveSettings();
 }));
+document.querySelector('input[name="syncRestartFromStart"]').addEventListener('change', async (event) => {
+  settings.syncRestartFromStart = event.target.checked;
+  await saveSettings();
+});
 $('#toggleButton').addEventListener('click', async () => {
   $('#toggleButton').disabled = true;
   showError('');
