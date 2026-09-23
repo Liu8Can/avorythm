@@ -64,7 +64,7 @@
 
   <script>
     function detectSystemLocale(){const lang=(navigator.languages?.[0]||navigator.language||navigator.userLanguage||'en').toLowerCase();if(lang.startsWith('zh'))return 'zh-Hans';if(lang.startsWith('fa'))return 'fa';return 'en';}
-    function datasetKey(locale){return locale.replace(/-([a-z])/g,(_,c)=>c.toUpperCase());}
+    function datasetKey(locale){return locale.replace(/-([a-zA-Z])/g,(_,c)=>c.toUpperCase());}
     function mixerAlertText(locale){if(locale==='fa')return 'باز کردن میکسر ممکن نشد.';if(locale==='zh-Hans')return '无法打开音量合成器。';return 'Could not open Volume Mixer.';}
     let locale=localStorage.getItem('avorythm.locale')||localStorage.getItem('lingora.locale')||localStorage.getItem('dubira.locale')||localStorage.getItem('voxilyra.locale')||detectSystemLocale();
     const render=()=>{const key=datasetKey(locale);document.documentElement.lang=locale;document.documentElement.dir=locale==='fa'?'rtl':'ltr';document.querySelectorAll('[data-fa]').forEach((node)=>{node.textContent=node.dataset[key];});document.querySelectorAll('code').forEach((node)=>node.classList.add('ltr'));document.getElementById('language').value=locale;};

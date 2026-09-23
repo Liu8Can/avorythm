@@ -5,7 +5,7 @@ function detectSystemLocale() {
   return 'en';
 }
 function datasetKey(locale) {
-  return locale.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+  return locale.replace(/-([a-zA-Z])/g, (_, c) => c.toUpperCase());
 }
 let locale = localStorage.getItem('avorythm.locale') || localStorage.getItem('lingora.locale') || localStorage.getItem('dubira.locale') || localStorage.getItem('voxilyra.locale') || detectSystemLocale();
 const render = () => {

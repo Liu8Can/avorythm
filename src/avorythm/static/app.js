@@ -216,7 +216,7 @@ const languageNames = {
   'zh-Hans': {fa: '波斯语', en: '英语', ar: '阿拉伯语', de: '德语', fr: '法语', es: '西班牙语', it: '意大利语', ja: '日语', ko: '韩语', ru: '俄语', tr: '土耳其语', zh: '中文'}
 };
 
-function t(key) { return messages[locale][key] || key; }
+function t(key) { return messages[locale]?.[key] || key; }
 
 function buildSubtitleWindow(target) {
   const doc = target.document;
