@@ -13,60 +13,63 @@
 </head>
 <body>
   <header class="top">
-    <div class="brand"><img src="/assets/avorythm-logo.png" alt=""><span><b>Avorythm</b><small data-fa="آموزش تنظیم صدای ویندوز" data-en="Windows audio setup guide">آموزش تنظیم صدای ویندوز</small></span></div>
-    <div class="actions"><a href="/" data-fa="بازگشت به داشبورد" data-en="Back to dashboard">بازگشت به داشبورد</a><button id="openMixer" type="button" data-fa="باز کردن Volume Mixer" data-en="Open Volume Mixer">باز کردن Volume Mixer</button><button id="language" type="button">EN</button></div>
+    <div class="brand"><img src="/assets/avorythm-logo.png" alt=""><span><b>Avorythm</b><small data-fa="آموزش تنظیم صدای ویندوز" data-en="Windows audio setup guide" data-zh-hans="Windows 音频设置指南">آموزش تنظیم صدای ویندوز</small></span></div>
+    <div class="actions"><a href="/" data-fa="بازگشت به داشبورد" data-en="Back to dashboard" data-zh-hans="返回仪表盘">بازگشت به داشبورد</a><button id="openMixer" type="button" data-fa="باز کردن Volume Mixer" data-en="Open Volume Mixer" data-zh-hans="打开音量合成器">باز کردن Volume Mixer</button><select id="language" aria-label="界面语言"><option value="fa">فارسی</option><option value="en">English</option><option value="zh-Hans">中文（简体）</option></select></div>
   </header>
 
   <main class="shell">
     <section class="hero">
       <span class="eyebrow">AMM VIRTUAL AUDIO ROUTE</span>
-      <h1 data-fa="سه انتخاب؛ بدون هم‌پوشانی دو صدا" data-en="Three choices; no overlapping speech">سه انتخاب؛ بدون هم‌پوشانی دو صدا</h1>
-      <p data-fa="این تصویر از تنظیم واقعی سیستم گرفته شده است. فقط مسیر زیر را عیناً بساز: Chrome وارد دستگاه مجازی شود، Avorythm از میکروفون مجازی بگیرد و صدای دوبله را از هدفون یا اسپیکر واقعی پخش کند." data-en="This is a real Windows setup. Recreate only this route: Chrome outputs to the virtual device, Avorythm captures its virtual microphone, and the dub plays through your physical headphones or speakers.">این تصویر از تنظیم واقعی سیستم گرفته شده است. فقط مسیر زیر را عیناً بساز: Chrome وارد دستگاه مجازی شود، Avorythm از میکروفون مجازی بگیرد و صدای دوبله را از هدفون یا اسپیکر واقعی پخش کند.</p>
+      <h1 data-fa="سه انتخاب؛ بدون هم‌پوشانی دو صدا" data-en="Three choices; no overlapping speech" data-zh-hans="三个选择；不会出现两种声音重叠">سه 선택؛ بدون هم‌پوشانی دو صدا</h1>
+      <p data-fa="این تصویر از تنظیم واقعی سیستم گرفته شده است. فقط مسیر زیر را عیناً بساز: Chrome وارد دستگاه مجازی شود، Avorythm از میکروفون مجازی بگیرد و صدای دوبله را از هدفون یا اسپیکر واقعی پخش کند." data-en="This is a real Windows setup. Recreate only this route: Chrome outputs to the virtual device, Avorythm captures its virtual microphone, and the dub plays through your physical headphones or speakers." data-zh-hans="这是真实的 Windows 设置截图。只需照此构建路由：Chrome 输出到虚拟设备，Avorythm 从虚拟麦克风采集，配音通过你的物理耳机或扬声器播放。">این تصویر از تنظیم واقعی سیستم گرفته شده است. فقط مسیر زیر را عیناً بساز: Chrome وارد دستگاه مجازی شود، Avorythm از میکروفون مجازی بگیرد و صدای دوبله را از هدفون یا اسپیکر واقعی پخش کند.</p>
     </section>
 
     <section class="route" aria-label="Audio route">
-      <article data-step="1"><small data-fa="برنامهٔ منبع" data-en="Source app">برنامهٔ منبع</small><b>Google Chrome</b><code>Output → Speakers (AMM Virtual Audio Device)</code></article>
-      <article data-step="2"><small data-fa="ورودی Avorythm" data-en="Avorythm input">ورودی Avorythm</small><b data-fa="صدای برنامه" data-en="Application audio">صدای برنامه</b><code>Input → Microphone (AMM Virtual Audio Device)</code></article>
-      <article data-step="3"><small data-fa="خروجی Avorythm" data-en="Avorythm output">خروجی Avorythm</small><b data-fa="چیزی که می‌شنوی" data-en="What you hear">چیزی که می‌شنوی</b><code>Output → Default / Physical headphones</code></article>
+      <article data-step="1"><small data-fa="برنامهٔ منبع" data-en="Source app" data-zh-hans="源应用">برنامهٔ منبع</small><b>Google Chrome</b><code>Output → Speakers (AMM Virtual Audio Device)</code></article>
+      <article data-step="2"><small data-fa="ورودی Avorythm" data-en="Avorythm input" data-zh-hans="Avorythm 输入">ورودی Avorythm</small><b data-fa="صدای برنامه" data-en="Application audio" data-zh-hans="应用音频">صدای برنامه</b><code>Input → Microphone (AMM Virtual Audio Device)</code></article>
+      <article data-step="3"><small data-fa="خروجی Avorythm" data-en="Avorythm output" data-zh-hans="Avorythm 输出">خروجی Avorythm</small><b data-fa="چیزی که می‌شنوی" data-en="What you hear" data-zh-hans="你听到的内容">چیزی که می‌شنوی</b><code>Output → Default / Physical headphones</code></article>
     </section>
 
     <section class="screenshot-card">
       <img src="/assets/audio-routing-guide.png" alt="Windows Volume Mixer showing Chrome output routed to AMM Virtual Audio Device and Avorythm input routed from AMM Virtual Audio Device">
-      <div class="caption"><p data-fa="در ردیف Google Chrome فقط Output device را روی Speakers (AMM Virtual Audio Device) بگذار. در ردیف Avorythm.exe، Output device باید Default بماند و Input device روی Microphone (AMM Virtual Audio Device) قرار بگیرد." data-en="For Google Chrome, set only Output device to Speakers (AMM Virtual Audio Device). For Avorythm.exe, leave Output device on Default and set Input device to Microphone (AMM Virtual Audio Device).">در ردیف Google Chrome فقط Output device را روی Speakers (AMM Virtual Audio Device) بگذار. در ردیف Avorythm.exe، Output device باید Default بماند و Input device روی Microphone (AMM Virtual Audio Device) قرار بگیرد.</p><strong data-fa="تصویر مرجع واقعی" data-en="Real reference screenshot">تصویر مرجع واقعی</strong></div>
+      <div class="caption"><p data-fa="در ردیف Google Chrome فقط Output device را روی Speakers (AMM Virtual Audio Device) بگذار. در ردیف Avorythm.exe، Output device باید Default بماند و Input device روی Microphone (AMM Virtual Audio Device) قرار بگیرد." data-en="For Google Chrome, set only Output device to Speakers (AMM Virtual Audio Device). For Avorythm.exe, leave Output device on Default and set Input device to Microphone (AMM Virtual Audio Device)." data-zh-hans="对于 Google Chrome，只需将 Output device 设置为 Speakers (AMM Virtual Audio Device)。对于 Avorythm.exe，Output device 保持 Default，并将 Input device 设置为 Microphone (AMM Virtual Audio Device)。">در ردیف Google Chrome فقط Output device را روی Speakers (AMM Virtual Audio Device) بگذار. در ردیف Avorythm.exe، Output device باید Default بماند و Input device روی Microphone (AMM Virtual Audio Device) قرار بگیرد.</p><strong data-fa="تصویر مرجع واقعی" data-en="Real reference screenshot" data-zh-hans="真实参考截图">تصویر مرجع واقعی</strong></div>
     </section>
 
     <section class="steps">
       <article class="card">
-        <h2 data-fa="مراحل دقیق" data-en="Exact steps">مراحل دقیق</h2>
+        <h2 data-fa="مراحل دقیق" data-en="Exact steps" data-zh-hans="详细步骤">مراحل دقیق</h2>
         <ol>
-          <li data-fa="فیلم را در Chrome یا برنامهٔ منبع پخش کن تا در Volume Mixer دیده شود." data-en="Play the media in Chrome or the source app so it appears in Volume Mixer.">فیلم را در Chrome یا برنامهٔ منبع پخش کن تا در Volume Mixer دیده شود.</li>
-          <li data-fa="Settings → System → Sound → Volume mixer را باز کن." data-en="Open Settings → System → Sound → Volume mixer.">Settings → System → Sound → Volume mixer را باز کن.</li>
-          <li data-fa="Output برنامهٔ منبع را روی Speakers (AMM Virtual Audio Device) بگذار." data-en="Set the source app output to Speakers (AMM Virtual Audio Device).">Output برنامهٔ منبع را روی Speakers (AMM Virtual Audio Device) بگذار.</li>
-          <li data-fa="در Avorythm، ورودی AMM Loopback/Virtual را انتخاب کن." data-en="Select the AMM loopback/virtual capture inside Avorythm.">در Avorythm، ورودی AMM Loopback/Virtual را انتخاب کن.</li>
-          <li data-fa="خروجی Avorythm را روی Default یا هدفون واقعی بگذار و صدای اصلی را روی صفر نگه دار." data-en="Keep Avorythm output on Default or physical headphones and set original volume to zero.">خروجی Avorythm را روی Default یا هدفون واقعی بگذار و صدای اصلی را روی صفر نگه دار.</li>
+          <li data-fa="فیلم را در Chrome یا برنامهٔ منبع پخش کن تا در Volume Mixer دیده شود." data-en="Play the media in Chrome or the source app so it appears in Volume Mixer." data-zh-hans="在 Chrome 或源应用中播放媒体，使其出现在音量合成器中。">فیلم را در Chrome یا برنامهٔ منبع پخش کن تا در Volume Mixer دیده شود.</li>
+          <li data-fa="Settings → System → Sound → Volume mixer را باز کن." data-en="Open Settings → System → Sound → Volume mixer." data-zh-hans="打开 Settings → System → Sound → Volume mixer。">Settings → System → Sound → Volume mixer را باز کن.</li>
+          <li data-fa="Output برنامهٔ منبع را روی Speakers (AMM Virtual Audio Device) بگذار." data-en="Set the source app output to Speakers (AMM Virtual Audio Device)." data-zh-hans="将源应用的 Output 设置为 Speakers (AMM Virtual Audio Device)。">Output برنامهٔ منبع را روی Speakers (AMM Virtual Audio Device) بگذار.</li>
+          <li data-fa="در Avorythm، ورودی AMM Loopback/Virtual را انتخاب کن." data-en="Select the AMM loopback/virtual capture inside Avorythm." data-zh-hans="在 Avorythm 中选择 AMM Loopback/Virtual 捕获输入。">در Avorythm، ورودی AMM Loopback/Virtual را انتخاب کن.</li>
+          <li data-fa="خروجی Avorythm را روی Default یا هدفون واقعی بگذار و صدای اصلی را روی صفر نگه دار." data-en="Keep Avorythm output on Default or physical headphones and set original volume to zero." data-zh-hans="Avorythm 输出保持在 Default 或物理耳机，并将原始音量设为零。">خروجی Avorythm را روی Default یا هدفون واقعی بگذار و صدای اصلی را روی صفر نگه دار.</li>
         </ol>
       </article>
       <article class="card warning">
-        <h2 data-fa="اشتباه خطرناک" data-en="Avoid feedback">اشتباه خطرناک</h2>
+        <h2 data-fa="اشتباه خطرناک" data-en="Avoid feedback" data-zh-hans="避免反馈">اشتباه خطرناک</h2>
         <ul>
-          <li><b data-fa="خروجی Avorythm را روی AMM Virtual نگذار." data-en="Never route Avorythm output back to AMM Virtual.">خروجی Avorythm را روی AMM Virtual نگذار.</b></li>
-          <li data-fa="این کار صدای دوبله را دوباره Capture می‌کند و اکو/حلقهٔ صوتی می‌سازد." data-en="That captures the dub again and creates echo or a feedback loop.">این کار صدای دوبله را دوباره Capture می‌کند و اکو/حلقهٔ صوتی می‌سازد.</li>
-          <li data-fa="برای شنیدن فقط دوبله، Original را ۰٪ و Dubbed را ۱۰۰٪ بگذار." data-en="For dub-only listening, set Original to 0% and Dubbed to 100%.">برای شنیدن فقط دوبله، Original را ۰٪ و Dubbed را ۱۰۰٪ بگذار.</li>
+          <li><b data-fa="خروجی Avorythm را روی AMM Virtual نگذار." data-en="Never route Avorythm output back to AMM Virtual." data-zh-hans="切勿将 Avorythm 输出路由回 AMM Virtual。">خروجی Avorythm را روی AMM Virtual نگذار.</b></li>
+          <li data-fa="این کار صدای دوبله را دوباره Capture می‌کند و اکو/حلقهٔ صوتی می‌سازد." data-en="That captures the dub again and creates echo or a feedback loop." data-zh-hans="这会再次捕获配音，产生回声或反馈环路。">این کار صدای دوبله را دوباره Capture می‌کند و اکو/حلقهٔ صوتی می‌سازد.</li>
+          <li data-fa="برای شنیدن فقط دوبله، Original را ۰٪ و Dubbed را ۱۰۰٪ بگذار." data-en="For dub-only listening, set Original to 0% and Dubbed to 100%." data-zh-hans="若只想听配音，请将 Original 设为 0%、Dubbed 设为 100%。">برای شنیدن فقط دوبله، Original را ۰٪ و Dubbed را ۱۰۰٪ بگذار.</li>
         </ul>
       </article>
     </section>
 
     <section class="not-needed">
-      <h2 data-fa="چه وقت به AMM نیاز نیست؟" data-en="When is AMM unnecessary?">چه وقت به AMM نیاز نیست؟</h2>
-      <p data-fa="اکستنشن مستقل Chrome صدای همان تب را مستقیم Capture می‌کند و هیچ Virtual Audio Device نمی‌خواهد. بخش «دوبلهٔ فایل صوتی/ویدئویی» داخل اپ نیز فایل را مستقیم با FFmpeg می‌خواند و به تنظیم Volume Mixer نیاز ندارد. این آموزش فقط برای دوبلهٔ زندهٔ برنامه‌های دسکتاپ یا مرورگر بدون اکستنشن است." data-en="The standalone Chrome extension captures its tab directly and needs no virtual device. The in-app audio/video-file processor reads the file with FFmpeg and also needs no Volume Mixer setup. This guide is only for live dubbing of desktop apps or a browser without the extension.">اکستنشن مستقل Chrome صدای همان تب را مستقیم Capture می‌کند و هیچ Virtual Audio Device نمی‌خواهد. بخش «دوبلهٔ فایل صوتی/ویدئویی» داخل اپ نیز فایل را مستقیم با FFmpeg می‌خواند و به تنظیم Volume Mixer نیاز ندارد. این آموزش فقط برای دوبلهٔ زندهٔ برنامه‌های دسکتاپ یا مرورگر بدون اکستنشن است.</p>
+      <h2 data-fa="چه وقت به AMM نیاز نیست؟" data-en="When is AMM unnecessary?" data-zh-hans="什么时候不需要 AMM？">چه وقت به AMM نیاز نیست؟</h2>
+      <p data-fa="اکستنشن مستقل Chrome صدای همان تب را مستقیم Capture می‌کند و هیچ Virtual Audio Device نمی‌خواهد. بخش «دوبلهٔ فایل صوتی/ویدئویی» داخل اپ نیز فایل را مستقیم با FFmpeg می‌خواند و به تنظیم Volume Mixer نیاز ندارد. این آموزش فقط برای دوبلهٔ زندهٔ برنامه‌های دسکتاپ یا مرورگر بدون اکستنشن است." data-en="The standalone Chrome extension captures its tab directly and needs no virtual device. The in-app audio/video-file processor reads the file with FFmpeg and also needs no Volume Mixer setup. This guide is only for live dubbing of desktop apps or a browser without the extension." data-zh-hans="独立的 Chrome 扩展直接捕获其标签页的音频，无需任何虚拟音频设备。应用内的“音频/视频文件配音”部分也直接用 FFmpeg 读取文件，无需设置音量合成器。本指南仅适用于对桌面应用或未安装扩展的浏览器进行实时配音。">اکستنشن مستقل Chrome صدای همان تب را مستقیم Capture می‌کند و هیچ Virtual Audio Device نمی‌خواهد. بخش «دوبلهٔ فایل صوتی/ویدئویی» داخل اپ نیز فایل را مستقیم با FFmpeg می‌خواند و به تنظیم Volume Mixer نیاز ندارد. این آموزش فقط برای دوبلهٔ زندهٔ برنامه‌های دسکتاپ یا مرورگر بدون اکستنشن است.</p>
     </section>
   </main>
 
   <script>
-    let locale=localStorage.getItem('avorythm.locale')||localStorage.getItem('lingora.locale')||localStorage.getItem('dubira.locale')||localStorage.getItem('voxilyra.locale')||'fa';
-    const render=()=>{document.documentElement.lang=locale;document.documentElement.dir=locale==='fa'?'rtl':'ltr';document.querySelectorAll('[data-fa]').forEach((node)=>{node.textContent=node.dataset[locale];});document.querySelectorAll('code').forEach((node)=>node.classList.add('ltr'));document.getElementById('language').textContent=locale==='fa'?'EN':'فا';};
-    document.getElementById('language').onclick=()=>{locale=locale==='fa'?'en':'fa';localStorage.setItem('avorythm.locale',locale);render();};
-    document.getElementById('openMixer').onclick=async()=>{const response=await fetch('/api/audio/open-mixer',{method:'POST'});if(!response.ok)alert(locale==='fa'?'باز کردن میکسر ممکن نشد.':'Could not open Volume Mixer.');};
+    function detectSystemLocale(){const lang=(navigator.languages?.[0]||navigator.language||navigator.userLanguage||'en').toLowerCase();if(lang.startsWith('zh'))return 'zh-Hans';if(lang.startsWith('fa'))return 'fa';return 'en';}
+    function datasetKey(locale){return locale.replace(/-([a-z])/g,(_,c)=>c.toUpperCase());}
+    function mixerAlertText(locale){if(locale==='fa')return 'باز کردن میکسر ممکن نشد.';if(locale==='zh-Hans')return '无法打开音量合成器。';return 'Could not open Volume Mixer.';}
+    let locale=localStorage.getItem('avorythm.locale')||localStorage.getItem('lingora.locale')||localStorage.getItem('dubira.locale')||localStorage.getItem('voxilyra.locale')||detectSystemLocale();
+    const render=()=>{const key=datasetKey(locale);document.documentElement.lang=locale;document.documentElement.dir=locale==='fa'?'rtl':'ltr';document.querySelectorAll('[data-fa]').forEach((node)=>{node.textContent=node.dataset[key];});document.querySelectorAll('code').forEach((node)=>node.classList.add('ltr'));document.getElementById('language').value=locale;};
+    document.getElementById('language').addEventListener('change',()=>{locale=document.getElementById('language').value;localStorage.setItem('avorythm.locale',locale);render();});
+    document.getElementById('openMixer').onclick=async()=>{const response=await fetch('/api/audio/open-mixer',{method:'POST'});if(!response.ok)alert(mixerAlertText(locale));};
     render();
   </script>
 </body>

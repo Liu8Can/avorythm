@@ -14,7 +14,7 @@ async function refresh() {
     card.style.setProperty('--opacity', String(settings.subtitle_opacity / 100));
     source.textContent = state.source_text || '';
     source.hidden = !settings.source_subtitles_enabled || !state.source_text;
-    translation.textContent = state.translated_text || (settings.target_language === 'fa' ? 'منتظر ترجمه…' : 'Waiting for translation…');
+    translation.textContent = state.translated_text || (settings.target_language === 'fa' ? 'منتظر ترجمه…' : settings.target_language.startsWith('zh') ? '等待翻译…' : 'Waiting for translation…');
     translation.hidden = !settings.translated_subtitles_enabled;
     card.classList.toggle('source-only', settings.source_subtitles_enabled && !settings.translated_subtitles_enabled);
     source.dir = state.source_dir || 'auto';

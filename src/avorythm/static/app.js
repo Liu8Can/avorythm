@@ -1,6 +1,12 @@
 const $ = (selector) => document.querySelector(selector);
 const API = '/api';
-let locale = localStorage.getItem('avorythm.locale') || localStorage.getItem('lingora.locale') || localStorage.getItem('dubira.locale') || localStorage.getItem('voxilyra.locale') || 'fa';
+function detectSystemLocale() {
+  const lang = (navigator.languages?.[0] || navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  if (lang.startsWith('zh')) return 'zh-Hans';
+  if (lang.startsWith('fa')) return 'fa';
+  return 'en';
+}
+let locale = localStorage.getItem('avorythm.locale') || localStorage.getItem('lingora.locale') || localStorage.getItem('dubira.locale') || localStorage.getItem('voxilyra.locale') || detectSystemLocale();
 let bootstrap = null;
 let lastError = '';
 let selectedMediaFile = null;
@@ -136,15 +142,78 @@ const messages = {
     network_recovered: 'The connection briefly dropped; the last valid result was preserved.',
     non_speech_skipped: 'A non-speech interval was preserved as synchronized silence.',
     segment_skipped: 'One interval returned no result after three attempts and was preserved as synchronized silence; review that section.'
+  },
+  'zh-Hans': {
+    navLive: '实时', navStudio: '文件工作室', navHelp: '帮助', navGuide: '音频设置', quitApp: '退出应用',
+    appClosed: 'Avorythm 已关闭。', closeTab: '现在可以关闭此窗口。', translationModel: '翻译模型',
+    appOnline: '桌面应用已在线', tagline: '实时翻译，告别繁琐',
+    eyebrow: '使用 Gemini 进行实时翻译与配音', heroTitle: '用你的语言聆听任何声音。',
+    heroText: '实时翻译音频，或处理音频/视频文件以进行时间轴同步的播放。',
+    heroLive: '持续翻译', heroSync: '同步媒体', heroLocal: '本地输出',
+    start: '开始翻译', stop: '停止翻译', record: '开始录制', stopRecord: '停止录制',
+    status: '状态', idle: '就绪', connecting: '连接中', connected: '正在翻译', error: '错误',
+    detectedLanguage: '检测到的语言', recording: '录制', off: '关', on: '开',
+    liveTranscript: '实时转写', clear: '清空', original: '原始音频', translation: '翻译',
+    waitingSource: '等待音频…', waitingTranslation: '翻译将显示于此…',
+    archive: '归档', latestOutput: '最新输出', noRecording: '暂无已录制的输出',
+    recordHint: '在配音时开启录制，可生成四个同步文件。', downloadAll: '全部下载',
+    controls: '控制', settings: '设置', quickSetup: '手动设置桌面音频',
+    setupDescription: '在 Windows 音量合成器中一步完成',
+    setupDescriptionDarwin: '选择 macOS 环回输入',
+    setupDescriptionLinux: '选择 Linux 监听源',
+    setupHelp: '桌面实时配音时，将源应用的输出路由到 AMM Virtual，并让 Avorythm 输出到物理耳机。扩展和文件处理器无需此路由。',
+    setupHelpDarwin: '在 macOS 上，在 Avorythm 中选择诸如 BlackHole 的环回输入。媒体工作室和扩展不需要它。',
+    setupHelpLinux: '在 Linux 上，选择相应的 PipeWire/PulseAudio 监听源。媒体工作室和扩展无需虚拟路由。',
+    openWindowsMixer: '打开 Windows 音量合成器', audioGuide: '打开音频设置图文指南',
+    targetLanguage: '目标语言', speaker: '文件配音音色',
+    outputMixer: '我的输出混音', outputMixerHint: '自由组合音频与字幕',
+    floatingSubtitles: '悬浮字幕', floatingHint: '可自由移动与调整大小', openSubtitleWindow: '打开字幕窗口', closeSubtitleWindow: '关闭字幕窗口',
+    subtitleSize: '文字大小', subtitleWidth: '卡片宽度', subtitleOpacity: '背景不透明度', showSourceLine: '在翻译上方显示原文', subtitlePopupBlocked: '浏览器拦截了字幕窗口的打开。', subtitleWaiting: '等待翻译…',
+    nativeVoiceHelp: '仅用于上传的音频和视频文件。', captureDevice: '应用音频输入',
+    outputDevice: '监听输出',
+    originalSound: '原始音频', dubbedSound: '配音音频', sourceSubtitles: '原文字幕', translatedSubtitles: '译文字幕', audioLevels: '音频混音', advanced: '高级设置', save: '保存',
+    proxy: '代理', saveSettings: '保存设置', saved: '已保存。', keySaved: '密钥已安全保存。',
+    keyExists: '已配置 API 密钥', keyMissing: '请输入 API 密钥', groqKeyMissing: '请在高级设置中输入 Groq API 密钥以处理文件。',
+    mixerOpened: '已打开 Windows 合成器；请按指南设置 AMM 路由。', requestFailed: '请求失败',
+    recordingReady: '四个输出已就绪', selectDefault: '系统默认',
+    locationUnsupported: 'Google 不允许此 API 密钥或连接位置；请检查账号和代理出口。',
+    mediaKicker: '媒体工作室', mediaTitle: '为音频或视频文件配音',
+    mediaIntro: '在本地处理，下载四个输出，并在无漂移的时间轴上播放配音。',
+    chooseVideo: '选择音频或视频文件，或拖放到此处', videoFormats: 'MP3、WAV、M4A、FLAC、OGG、MP4、MKV 及常见格式，最大 8 GB',
+    processingMode: '处理模式', preciseMode: '精确同步',
+    preciseHelp: 'Whisper Large v3 加生成语音文本校验；推荐使用。', fastMode: '快速',
+    fastHelp: 'Whisper Large v3 Turbo，检查更少，预览更快。', fileTargetLanguage: '文件目标语言',
+    processVideo: '处理文件',
+    mediaPrivacy: '文件保留在本机；音频片段发送至 Groq Whisper，文本发送至 Gemini 免费模型池，译文发送至 Gemini Live 生成语音。',
+    cancel: '取消', deleteJob: '删除项目', recentJobs: '最近项目', storedLocally: '存储于本设备',
+    noJobs: '尚未处理任何音频或视频文件。', playerWaiting: '处理完成后，同步播放器将显示于此。',
+    hearOriginal: '原始音频', hearDubbed: '配音音频', sourceSubs: '原文字幕',
+    translatedSubs: '译文字幕', originalShort: '原声', dubbedShort: '配音',
+    originalAudioFile: '原始音频', dubbedAudioFile: '配音音频', sourceSubtitleFile: '原文字幕',
+    translatedSubtitleFile: '配音字幕', allFourFiles: '全部四个文件', fileSelected: '已选择',
+    uploadFirst: '请先选择一个音频或视频文件。', mediaQueued: '文件已保存并加入处理队列。',
+    confirmDelete: '删除此项目及其所有本地输出？', open: '打开',
+    stageQueued: '排队中', stageProbing: '检查文件', stageExtracting: '提取音频',
+    stageTranscribing: '使用 Groq Whisper 转写', stageTranslating: '使用 Gemini 免费池翻译', stageNarrating: '使用 Gemini Live 生成配音', stageQuotaWait: '等待配额', stageAligning: '对齐输出',
+    stageReady: '可播放', stageFailed: '失败', stageCancelled: '已取消', stageCancelling: '取消中',
+    quotaNotice: '为保持在每分钟 2 万 token 以下，处理已自动暂停。', processingWarning: '精确模式使用更准确的 Whisper 模型，并逐段检查生成的语音文本。',
+    qualityScore: '语音与翻译匹配度', narration_retry: '某片段因音频与文本不一致已重新生成。',
+    quality_low: '某片段置信度仍较低；使用前请检查其音频与文本。',
+    quality_unverified: '无法识别源语言以进行自动质量检查；请手动检查输出。',
+    network_recovered: '连接短暂中断；已保留上一个有效结果。',
+    non_speech_skipped: '一段非语音区间已作为同步静音保留。',
+    segment_skipped: '某区间三次尝试均无结果，已作为同步静音保留；请检查该部分。'
   }
 };
 
 messages.fa.projectHomepage = 'صفحهٔ پروژه و امکانات بیشتر ↗';
 messages.en.projectHomepage = 'Project homepage and more features ↗';
+messages['zh-Hans'].projectHomepage = '项目主页与更多功能 ↗';
 
 const languageNames = {
   fa: {fa: 'فارسی', en: 'انگلیسی', ar: 'عربی', de: 'آلمانی', fr: 'فرانسوی', es: 'اسپانیایی', it: 'ایتالیایی', ja: 'ژاپنی', ko: 'کره‌ای', ru: 'روسی', tr: 'ترکی', zh: 'چینی'},
-  en: {fa: 'Persian', en: 'English', ar: 'Arabic', de: 'German', fr: 'French', es: 'Spanish', it: 'Italian', ja: 'Japanese', ko: 'Korean', ru: 'Russian', tr: 'Turkish', zh: 'Chinese'}
+  en: {fa: 'Persian', en: 'English', ar: 'Arabic', de: 'German', fr: 'French', es: 'Spanish', it: 'Italian', ja: 'Japanese', ko: 'Korean', ru: 'Russian', tr: 'Turkish', zh: 'Chinese'},
+  'zh-Hans': {fa: '波斯语', en: '英语', ar: '阿拉伯语', de: '德语', fr: '法语', es: '西班牙语', it: '意大利语', ja: '日语', ko: '韩语', ru: '俄语', tr: '土耳其语', zh: '中文'}
 };
 
 function t(key) { return messages[locale][key] || key; }
@@ -271,7 +340,7 @@ function fillSelect(element, items, selected, label) {
 }
 
 function fillLanguages(element, languages, selected) {
-  const display = new Intl.DisplayNames([locale === 'fa' ? 'fa' : 'en'], {type: 'language'});
+  const display = new Intl.DisplayNames([locale === 'fa' ? 'fa' : (locale === 'zh-Hans' ? 'zh-Hans' : 'en')], {type: 'language'});
   fillSelect(element, languages, selected, (code) => {
     const base = code.split('-')[0];
     try { return `${languageNames[locale][base] || display.of(base) || code} · ${code}`; } catch { return code; }
@@ -282,7 +351,7 @@ function translatePage() {
   document.documentElement.lang = locale;
   document.documentElement.dir = locale === 'fa' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-i18n]').forEach((node) => { node.textContent = t(node.dataset.i18n); });
-  $('#localeToggle').textContent = locale === 'fa' ? 'EN' : 'فا';
+  $('#localeToggle').value = locale;
   if (bootstrap) {
     fillLanguages($('#targetLanguage'), bootstrap.languages, $('#targetLanguage').value || bootstrap.settings.target_language);
     fillLanguages($('#mediaTargetLanguage'), bootstrap.languages, $('#mediaTargetLanguage').value || bootstrap.settings.target_language);
@@ -593,8 +662,8 @@ async function loadPlayer(job) {
   loadedPlayerJobId = job.id;
 }
 
-$('#localeToggle').addEventListener('click', () => {
-  locale = locale === 'fa' ? 'en' : 'fa';
+$('#localeToggle').addEventListener('change', () => {
+  locale = $('#localeToggle').value;
   localStorage.setItem('avorythm.locale', locale);
   translatePage();
   renderSubtitleButton();
