@@ -32,6 +32,14 @@ const copy = {
     captions:'Subtitle card',captionsHelp:'Move, resize, and scroll the card directly on the page.',position:'Initial position',bottomCenter:'Bottom center',bottomLeft:'Bottom left',bottomRight:'Bottom right',topCenter:'Top center',fontSize:'Text size',width:'Card width',opacity:'Background opacity',
     syncPlayer:'Synchronized recorder & player',syncHelp:'The tab keeps recording ahead of playback so seeking and dubbing remain stable.',buffer:'Recording lead',bufferHelp:'Capture stays ahead of playback; 20 seconds is recommended for stability.',faster:'Faster start',steadier:'Steadier sync',timingEngine:'Synchronized dubbing engine',geminiTiming:'Gemini 3.5 Live · faster',whisperTiming:'Whisper + LLM + Gemini 3.1 Live · more precise',timingEngineHelp:'Precise mode timestamps each utterance with Groq Whisper, translates it through the free Gemini model pool, then fits Gemini 3.1 Flash Live speech to that exact interval. On restricted networks, Chrome must also route api.groq.com through the browser or system proxy.',voiceName:'Precise-mode voice',clearGroqKey:'Clear Groq session key',groqKeyReady:'The Groq key is ready for this session.',groqKeyMissing:'Add a Groq key to use precise mode.',groqPermissionReady:'Chrome access to Groq is enabled.',groqPermissionMissing:'Chrome access to Groq has not been granted yet.',grantGroqPermission:'Allow access to Groq',groqConsentTitle:'I allow short audio windows from the selected tab to be sent directly to Groq Whisper',groqConsentBody:'This happens only in precise mode to transcribe speech and return timestamps. The resulting text then goes to Google Gemini for translation and voice generation.',
     consentTipTitle:'One required step',consentTipBody:'Before the first translation, open Privacy below and confirm that audio from the selected tab may be sent to Google Gemini.',consentTipAction:'Review consent ↓',privacyTitle:'Consent and privacy',privacyHelp:'Avorythm has no ads, analytics, or developer-operated server.',consentTitle:'I allow audio from my selected tab to be sent to Google Gemini',consentBody:'Processing starts only after you press Start. Four-output saving is off by default; synchronized playback records the tab locally for seeking and WebM export.',privacyPolicy:'Privacy policy ↗',helpPage:'Complete guide ↗',projectPage:'Project page ↗',reset:'Restore default settings',resetDone:'Default settings were restored.',groqPermissionDenied:'Whisper timing needs permission to connect to Groq.'
+  },
+  'zh-Hans': {
+    settingsTitle:'扩展设置',saved:'更改会自动保存',heading:'量身定制属于你的翻译体验。',intro:'音频、字幕、录制和同步播放器集中在一个清爽、易读的界面里;弹出页只负责快速启动。',
+    navConnection:'连接',navOutput:'输出',navCaptions:'字幕',navSync:'同步',navPrivacy:'隐私',connection:'连接到 Gemini',connectionHelp:'密钥仅保存在当前浏览器会话的内存中。',saveKey:'保存',clearKey:'清除本次会话密钥',keyReady:'密钥已为本会话就绪。',keyMissing:'尚未配置密钥。',keySaved:'密钥已为本会话成功保存。',keyCleared:'本次会话密钥已清除。',invalidKey:'密钥无效。',
+    output:'输出',outputHelp:'四个声道相互独立——可任意组合。',pageOutput:'页面内播放',pageOutputHelp:'这些控件仅影响快速的"在本页"模式。',syncOutput:'同步播放与导出',syncOutputHelp:'与页面内播放相互独立;此混音方案也会用于导出视频。',originalAudio:'原始音频',originalAudioHelp:'页面或视频的真实声音',dubbedAudio:'配音',dubbedAudioHelp:'Gemini 翻译后的语音',sourceSubtitles:'原文字幕',sourceSubtitlesHelp:'原话文本',translatedSubtitles:'译文字幕',translatedSubtitlesHelp:'目标语言文本',originalVolume:'原始音量',dubVolume:'配音音量',autoDuck:'智能压低原声',autoDuckHelp:'配音播放时自动降低原声音量。',recording:'保存四路输出',recordingHelp:'两个 WAV 和两个 SRT 文件保存到下载目录;默认关闭。',downloadsDenied:'未授予下载权限时,输出保存将保持关闭。',
+    captions:'字幕卡片',captionsHelp:'可在页面上直接拖动、调整大小并滚动卡片。',position:'初始位置',bottomCenter:'下方居中',bottomLeft:'左下',bottomRight:'右下',topCenter:'上方居中',fontSize:'文字大小',width:'卡片宽度',opacity:'背景不透明度',
+    syncPlayer:'同步录制器与播放器',syncHelp:'标签页会持续录制,领先于播放,以保证跳转和配音稳定。',buffer:'录制提前量',bufferHelp:'录制会领先于播放;建议 20 秒以保持稳定。',faster:'启动更快',steadier:'同步更稳',timingEngine:'同步配音引擎',geminiTiming:'Gemini 3.5 Live · 更快',whisperTiming:'Whisper + LLM + Gemini 3.1 Live · 更精准',timingEngineHelp:'精准模式先用 Groq Whisper 为每句话打时间戳,再通过免费的 Gemini 模型池翻译,最后用 Gemini 3.1 Flash Live 将配音贴合到该时间段。在受限网络下,Chrome 还需让 api.groq.com 通过浏览器或系统代理访问。',voiceName:'精准模式嗓音',clearGroqKey:'清除本次 Groq 密钥',groqKeyReady:'Groq 密钥已为本会话就绪。',groqKeyMissing:'请添加 Groq 密钥以使用精准模式。',groqPermissionReady:'Chrome 访问 Groq 已启用。',groqPermissionMissing:'尚未授予 Chrome 访问 Groq 的权限。',grantGroqPermission:'允许访问 Groq',groqConsentTitle:'我允许将所选标签页的短音频片段直接发送到 Groq Whisper',groqConsentBody:'仅在精准模式下进行,用于转录语音并返回时间戳。随后文本会发送到 Google Gemini 进行翻译和配音。',
+    consentTipTitle:'必要的一步',consentTipBody:'首次翻译前,请在下方"隐私"中确认允许将所选标签页的音频发送到 Google Gemini。',consentTipAction:'查看授权 ↓',privacyTitle:'授权与隐私',privacyHelp:'Avorythm 没有广告、分析或开发者运营的服务器。',consentTitle:'我允许将所选标签页的音频发送到 Google Gemini',consentBody:'只有在你按下"开始"后才会处理。四路输出保存默认关闭;同步播放会在本地录制标签页,以支持跳转和 WebM 导出。',privacyPolicy:'隐私政策 ↗',helpPage:'完整指南 ↗',projectPage:'项目页面 ↗',reset:'恢复默认设置',resetDone:'已恢复默认设置。',groqPermissionDenied:'Whisper 计时需要连接 Groq 的权限。'
   }
 };
 
@@ -41,7 +49,7 @@ function translate(){
   document.documentElement.lang=settings.locale;
   document.documentElement.dir=settings.locale==='fa'?'rtl':'ltr';
   document.querySelectorAll('[data-i18n]').forEach((node)=>{node.textContent=t(node.dataset.i18n);});
-  $('#localeToggle').textContent=settings.locale==='fa'?'EN':'فا';
+  $('#localeToggle').value=settings.locale;
   $('#helpPageLink').href=`https://github.com/msmahdinejad/avorythm/blob/main/docs/HELP${settings.locale==='fa'?'.fa':''}.md`;
 }
 
@@ -120,7 +128,7 @@ function readControls(){
   settings=normalizeSettings(settings);
 }
 
-$('#localeToggle').addEventListener('click',async()=>{settings.locale=settings.locale==='fa'?'en':'fa';await persist(false);});
+$('#localeToggle').addEventListener('change',async()=>{settings.locale=$('#localeToggle').value;await persist(false);});
 $('#saveKeyButton').addEventListener('click',async()=>{
   const response=await chrome.runtime.sendMessage({type:'set-key',apiKey:$('#apiKey').value.trim()});
   if(response?.ok){keySet=true;$('#apiKey').value='';renderKey();notice(t('keySaved'),true);}else notice(t('invalidKey'));

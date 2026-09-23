@@ -1,0 +1,5 @@
+{
+  "appName": {"message": "Avorythm — 实时翻译"},
+  "appDescription": {"message": "用 Gemini AI 实时翻译、配音和字幕选定的标签页,可选同步播放器。"},
+  "actionTitle": {"message": "打开 Avorythm 实时翻译"}
+}

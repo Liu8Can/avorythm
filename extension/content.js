@@ -66,7 +66,7 @@
     card.style.setProperty('--opacity', String(Math.max(.45, Math.min(.98, Number(settings.subtitleOpacity || 88) / 100))));
     source.textContent = message.sourceText || '';
     source.hidden = !sourceEnabled || !source.textContent;
-    translation.textContent = message.translatedText || (settings.locale === 'fa' ? 'منتظر ترجمه…' : 'Waiting for translation…');
+    translation.textContent = message.translatedText || (settings.locale === 'fa' ? 'منتظر ترجمه…' : settings.locale === 'zh-Hans' ? '等待翻译…' : 'Waiting for translation…');
     translation.hidden = !translatedEnabled;
     const nextPosition = settings.subtitlePosition || 'bottom-center';
     if (nextPosition !== lastPosition) { dragged = false; lastPosition = nextPosition; }

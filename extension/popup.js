@@ -32,6 +32,19 @@ const copy = {
     api_key_missing: 'Add your Gemini key in Settings.', api_key_invalid: 'The Gemini key is invalid.', consent_required: 'Confirm audio processing in Settings.',
     gemini_socket_failed: 'Could not connect to Gemini; check the browser proxy.', gemini_socket_closed: 'The Gemini connection closed.', gemini_socket_timeout: 'Gemini did not respond in time.', gemini_token_failed: 'Google could not issue a short-lived token; check the key and connection.', gemini_quota_exceeded: 'The Gemini quota is exhausted; try again shortly.', groq_key_missing:'Add a Groq key in Settings to use Whisper timing.', groq_consent_required:'Confirm permission for short audio windows to go to Groq Whisper in Settings.', groq_permission_missing:'Allow Chrome access to Groq in Settings to use precise mode.', groq_auth_failed:'The Groq key is invalid.', groq_access_forbidden:'Chrome cannot reach Groq; route api.groq.com through the browser or system proxy.', groq_connection_failed:'Chrome could not connect to Groq; check the proxy.', groq_quota_exceeded:'The Groq quota is temporarily exhausted.', capture_store_write_failed:'Local capture storage stopped; check available disk space and storage access.',
     active_tab_missing: 'No active tab was found.', capture_failed: 'Could not capture audio from this tab.', source_resume_failed:'The source video could not resume automatically. Play it once, then try again.', synchronized_player_unavailable: 'This tab cannot provide synchronized video; use on-page mode.', synchronized_player_failed: 'The video buffer could not start; try on-page mode.', downloads_permission_missing: 'Downloads access is required to save four outputs.'
+  },
+  'zh-Hans': {
+    tagline: '实时翻译当前标签页', ready: '准备就绪', connecting: '连接中…', connected: '实时翻译已开启', error: '连接出错',
+    setupNeeded: '需要简单设置', setupMessage: '请填入 Gemini 密钥,并明确确认允许将所选标签页的音频发送到 Google Gemini。', openSettings: '打开设置',
+    language: '目标语言', playbackMode: '播放方式', lowLatency: '在本页', lowLatencyHelp: '最快的实时音频与字幕方案', synchronized: '同步录制器与播放器', synchronizedHelp: '录制会先行;独立播放器可跳转和全屏', bestSync: '稳定同步',
+    start: '开始翻译', stop: '停止翻译', startHint: '将会翻译本标签页的音频', syncHint: '同步录制器与播放器会在新标签页打开', stopHint: '停止本次录制与会话',
+    yourOutput: '已选输出', edit: '编辑', selectedCount: (count) => `${count} 项已启用`, noOutput: '未启用任何输出',
+    originalAudio: '原始音频', dubbedAudio: '配音', sourceSubtitles: '原文字幕', translatedSubtitles: '译文字幕',
+    source: '原话', translated: '实时翻译', waiting: '等待音频…', waitingTranslation: '翻译内容显示于此…',
+    downloadReady: '四个文件已保存到下载目录。', privacyGoogle: '按下"开始"后,所选标签页的音频只会发送到 Google Gemini。', privacyPrecise: '在精准模式下,所选标签页的短音频片段会直接发送到 Groq Whisper;随后文本会发送到 Google Gemini 进行翻译和配音。', help:'指南 ↗', project: '项目 ↗',
+    api_key_missing: '请在设置中填入 Gemini 密钥。', api_key_invalid: 'Gemini 密钥无效。', consent_required: '请在设置中确认音频处理授权。',
+    gemini_socket_failed: '无法连接到 Gemini;请检查浏览器代理。', gemini_socket_closed: 'Gemini 连接已关闭。', gemini_socket_timeout: 'Gemini 未在规定时间内响应。', gemini_token_failed: 'Google 无法签发短期令牌;请检查密钥和网络。', gemini_quota_exceeded: 'Gemini 配额已耗尽;请稍后再试。', groq_key_missing:'请在设置中填入 Groq 密钥以使用 Whisper 计时。', groq_consent_required:'请在设置中确认允许将短音频片段发送到 Groq Whisper。', groq_permission_missing:'请在设置中允许 Chrome 访问 Groq 以使用精准模式。', groq_auth_failed:'Groq 密钥无效。', groq_access_forbidden:'Chrome 无法访问 Groq;请让 api.groq.com 通过浏览器或系统代理。', groq_connection_failed:'Chrome 无法连接到 Groq;请检查代理。', groq_quota_exceeded:'Groq 配额暂时已耗尽。', capture_store_write_failed:'本地录制存储已停止;请检查可用磁盘空间和存储权限。',
+    active_tab_missing: '未找到活动标签页。', capture_failed: '无法从此标签页捕获音频。', source_resume_failed:'源视频无法自动恢复播放。请手动播放一次后重试。', synchronized_player_unavailable: '此标签页无法提供同步视频;请使用页面内模式。', synchronized_player_failed: '视频缓冲无法启动;请尝试页面内模式。', downloads_permission_missing: '保存四路输出需要下载权限。'
   }
 };
 
@@ -49,7 +62,7 @@ function translate() {
   document.documentElement.dir = locale === 'fa' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-i18n]').forEach((node) => { node.textContent = t(node.dataset.i18n); });
   document.querySelectorAll('[data-i18n-aria]').forEach((node) => { node.setAttribute('aria-label', t(node.dataset.i18nAria)); });
-  $('#localeToggle').textContent = locale === 'fa' ? 'EN' : 'فا';
+  $('#localeToggle').value = locale;
   $('#helpLink').href = `https://github.com/msmahdinejad/avorythm/blob/main/docs/HELP${locale === 'fa' ? '.fa' : ''}.md`;
 }
 
@@ -147,8 +160,8 @@ async function openSettings() {
   await chrome.runtime.openOptionsPage();
 }
 
-$('#localeToggle').addEventListener('click', async () => {
-  settings.locale = settings.locale === 'fa' ? 'en' : 'fa';
+$('#localeToggle').addEventListener('change', async () => {
+  settings.locale = $('#localeToggle').value;
   await saveSettings();
 });
 $('#settingsButton').addEventListener('click', openSettings);
