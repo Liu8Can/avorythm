@@ -154,7 +154,7 @@ test('buffers media and keeps player controls independent from the source produc
   await element('#seekRange').listeners.change();
   assert.deepEqual(
     playerMessages.at(-1),
-    {type: 'ready', position: 0.5, replay: true},
+    {type: 'ready', position: 0.5, replay: true, replayId: 1},
     'seeking outside the in-memory range must rebuild that position from the OPFS recording'
   );
   channel.onmessage({data: {type: 'session-reset', position: 0.5, duration: 250}});
@@ -214,7 +214,7 @@ test('buffers media and keeps player controls independent from the source produc
   await video.listeners.waiting();
   assert.deepEqual(
     playerMessages.slice(messagesBeforeRepeatedStall).find((message) => message.replay),
-    {type: 'ready', position: video.currentTime, replay: true},
+    {type: 'ready', position: video.currentTime, replay: true, replayId: 2},
     'a repeated no-progress stall must rebuild playback from the local recording automatically'
   );
   channel.onmessage({data: {type: 'session-reset', position: video.currentTime, duration: 250}});

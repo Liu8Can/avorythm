@@ -21,3 +21,8 @@
 .stage-card:fullscreen{width:100vw;height:100vh;padding:0;border:0;border-radius:0;display:flex;flex-direction:column;background:#000}.stage-card:fullscreen .video-stage{height:auto;min-height:0;flex:1;border-radius:0}.stage-card:fullscreen .transport{flex:0 0 58px;padding:7px 14px;background:#05070c}.stage-card:fullscreen video{object-fit:contain}
 @media(max-width:900px){.recorder-grid{grid-template-columns:1fr 1fr}.transport-button:not(.icon-only){display:none}}
 @media(max-width:520px){.recorder-grid{grid-template-columns:1fr}.time-label{display:none}}
+.stage-error{inset:14px 14px auto;z-index:5;max-width:540px;max-height:calc(100% - 28px);margin-inline:auto;padding:14px 18px;border:1px solid rgba(255,123,145,.35);border-radius:12px;background:rgba(28,16,24,.95);backdrop-filter:blur(12px);overflow:auto;text-align:start;align-items:stretch;justify-content:flex-start;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.stage-error b{font-size:14px;margin:0 0 5px}.stage-error p{font-size:12px;line-height:1.7}
+.error-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}.error-actions button,.notice-dismiss{min-height:36px;padding:6px 16px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.08);color:var(--text);cursor:pointer;font-size:12px}
+.error-actions button:hover,.notice-dismiss:hover{background:rgba(255,255,255,.16)}.error-actions button:focus-visible,.notice-dismiss:focus-visible{outline:2px solid var(--aqua);outline-offset:2px}.notice-dismiss{flex:0 0 auto;margin-inline-start:auto}.player-warning p{flex:1}
+.timeline input{direction:ltr}

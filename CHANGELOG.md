@@ -2,6 +2,21 @@
 
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and semantic versioning.
 
+## [Unreleased]
+
+### Fixed
+
+- Replace the synchronized player's full-screen error cover with a compact bilingual notice, OK and Retry actions, automatic dismissal, and recovery-driven clearing. Provider and export warnings can also be dismissed.
+- Bound decoder and stalled-clock recovery attempts, keep replay timeouts active until usable media arrives, and allow Play to retry after acknowledging a timeout.
+- Ignore obsolete media callbacks and interrupted playback promises; stop dubbed audio during stalls, seeks, and pauses, then reschedule against the video clock without changing pitch.
+- Hold precise-mode playback at the processed frontier, tolerate small initial encoder timestamp offsets, and preserve user Pause during asynchronous buffering.
+- Cancel obsolete replay state when recording finalizes and keep failed Finish recording requests retryable.
+- Tag replay requests so a late response from an older seek cannot move the player back to a stale position.
+
+### Tests
+
+- Add deterministic player recovery regressions and a native Chrome MediaRecorder/MediaSource/Web Audio smoke test covering seek, pause, fullscreen, background playback, reload, injected decoder faults, and dismissible notices. AI responses are simulated; the smoke test does not call external providers.
+
 ## [1.1.12] - 2026-09-01
 
 ### Changed

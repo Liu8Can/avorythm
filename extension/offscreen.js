@@ -66,6 +66,7 @@ let syncDubHistory = [];
 let syncCaptionHistory = new Map();
 let syncReplayPending = false;
 let syncReplayRequestedPosition = null;
+let syncReplayRequestedId = null;
 let precisePipeline = null;
 let syncTurnIdleTimer = null;
 let syncTurnMaxTimer = null;
@@ -127,7 +128,7 @@ function publishSynchronizedCaption(translated, cue) {
   recorder?.addSubtitle(translated, presented);
 }
 
-async function replaySyncSession(position = 0) {
+async function replaySyncSession(position = 0, replayId = null) {
   if (!syncChannel || !syncInit) return;
   syncReady = false;
   syncQueue.splice(0);
@@ -140,7 +141,8 @@ async function replaySyncSession(position = 0) {
   syncChannel.postMessage({
     type: 'session-reset',
     position: Math.max(0, Number(position) || 0),
-    duration: capturedVideo?.duration || 0
+    duration: capturedVideo?.duration || 0,
+    ...(Number.isFinite(Number(replayId)) ? {replayId: Number(replayId)} : {})
   });
   syncChannel.postMessage(init);
   if (media?.size) {
@@ -161,13 +163,16 @@ function openSyncBridge() {
   syncChannel.onmessage = ({data}) => {
     if (data?.type !== 'ready') return;
     syncReplayRequestedPosition = Math.max(0, Number(data.position) || 0);
+    syncReplayRequestedId = Number.isFinite(Number(data.replayId)) ? Number(data.replayId) : null;
     if (syncReplayPending) return syncReplay;
     syncReplayPending = true;
     syncReplay = syncReplay.then(async () => {
       while (syncReplayRequestedPosition !== null) {
         const position = syncReplayRequestedPosition;
+        const replayId = syncReplayRequestedId;
         syncReplayRequestedPosition = null;
-        await replaySyncSession(position);
+        syncReplayRequestedId = null;
+        await replaySyncSession(position, replayId);
       }
     }).catch(async (error) => {
       await report({status: 'error', error: error.message});
@@ -795,6 +800,7 @@ async function begin(streamId, nextConfig, nextApiKey, nextGroqApiKey) {
   syncReplay = Promise.resolve();
   syncReplayPending = false;
   syncReplayRequestedPosition = null;
+  syncReplayRequestedId = null;
   syncDubSequence = 0;
   syncDubHistory = [];
   syncCaptionHistory = new Map();
@@ -905,6 +911,7 @@ async function end(sendAudioEnd = true) {
   syncInit = syncFinal = syncFrontier = null;
   syncReplayPending = false;
   syncReplayRequestedPosition = null;
+  syncReplayRequestedId = null;
   syncDubHistory = [];
   syncCaptionHistory = new Map();
   precisePipeline = null;

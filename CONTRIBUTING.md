@@ -12,3 +12,20 @@ Thank you for improving Avorythm. English and Persian issues are both welcome.
 Use Conventional Commit subjects where practical, for example `fix(extension): restore source gain after ducking`.
 
 Never commit API keys, recordings, generated builds, or third-party binaries without their license notice. By contributing, you agree that your contribution is licensed under the repository's MIT License.
+
+## Player regression checks
+
+`node --test tests/player-recovery.test.mjs` exercises playback failures with a deterministic clock.
+For native Chrome playback checks, install the optional browser dependencies with
+`python -m pip install -e ".[browser]"`, then run:
+
+```sh
+python scripts/player_smoke.py
+python scripts/player_smoke.py --soak-seconds 125 --headed
+```
+
+Chrome must be installed. The longer check records a local synthetic fixture before playing
+it for over two minutes; allow about five minutes. MediaRecorder, MediaSource, Web Audio,
+fullscreen, and replay are real browser APIs. Extension messaging/storage and AI output
+are test adapters, so these checks do not verify provider availability, translation quality,
+or protected-site capture. No keys, user recordings, or AI requests are used.
