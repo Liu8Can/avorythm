@@ -36,7 +36,7 @@ const copy = {
   'zh-Hans': {
     tagline: '实时翻译当前标签页', ready: '准备就绪', connecting: '连接中…', connected: '实时翻译已开启', error: '连接出错',
     setupNeeded: '需要简单设置', setupMessage: '请填入 Gemini 密钥,并明确确认允许将所选标签页的音频发送到 Google Gemini。', openSettings: '打开设置',
-    language: '目标语言', playbackMode: '播放方式', lowLatency: '在本页', lowLatencyHelp: '最快的实时音频与字幕方案', synchronized: '同步录制器与播放器', synchronizedHelp: '录制会先行;独立播放器可跳转和全屏', bestSync: '稳定同步',
+    language: '目标语言', playbackMode: '播放方式', lowLatency: '在本页', lowLatencyHelp: '最快的实时音频与字幕方案', synchronized: '同步录制器与播放器', synchronizedHelp: '录制会先行;独立播放器可跳转和全屏', bestSync: '稳定同步', restartFromStart: '从视频开头开始录制', restartFromStartHelp: '关闭时从当前位置开始录制',
     start: '开始翻译', stop: '停止翻译', startHint: '将会翻译本标签页的音频', syncHint: '同步录制器与播放器会在新标签页打开', stopHint: '停止本次录制与会话',
     yourOutput: '已选输出', edit: '编辑', selectedCount: (count) => `${count} 项已启用`, noOutput: '未启用任何输出',
     originalAudio: '原始音频', dubbedAudio: '配音', sourceSubtitles: '原文字幕', translatedSubtitles: '译文字幕',
