@@ -13,6 +13,10 @@
 </p>
 
 <p align="center">
+  <img src="assets/branding/readme-cover-fa.png" alt="اپ دسکتاپ و اکستنشن مرورگر Avorythm" width="100%">
+</p>
+
+<p align="center">
   <a href="https://github.com/msmahdinejad/avorythm/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/msmahdinejad/avorythm/ci.yml?branch=main&label=CI"></a>
   <a href="https://github.com/msmahdinejad/avorythm/releases"><img alt="Release" src="https://img.shields.io/github/v/release/msmahdinejad/avorythm?label=Release"></a>
   <img alt="Python 3.12" src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white">

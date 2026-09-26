@@ -67,7 +67,7 @@ File Studio keeps the source and generated outputs on your computer. It sends ex
 
 ## 2. Browser extension
 
-![Avorythm extension start screen](../store-assets/en/01-popup.png)
+![Avorythm extension start screen](images/extension/popup-en.png)
 
 ### Install
 
@@ -75,7 +75,7 @@ Install [Avorythm from the Chrome Web Store](https://chromewebstore.google.com/d
 
 ### First-time setup — required
 
-![Avorythm extension connection and consent settings](../store-assets/en/02-settings.png)
+![Avorythm extension connection and consent settings](images/extension/settings-en.png)
 
 1. Open Avorythm and select **Open settings**.
 2. Save your Gemini API key. The key stays in Chrome session storage and is cleared after the browser fully exits.
@@ -89,13 +89,13 @@ Install [Avorythm from the Chrome Web Store](https://chromewebstore.google.com/d
 
 **Synchronized recorder & player** prioritizes stable synchronization. Capture runs as a producer, while a separate player consumes the recorded stream after the configured safety lead—20 seconds by default. Pausing, seeking, switching tabs, or fullscreening the Avorythm player does not pause capture.
 
-![Synchronized recorder settings](../store-assets/en/03-sync-settings.png)
+![Synchronized recorder settings](images/extension/sync-settings-en.png)
 
 The faster engine sends selected-tab audio directly to Gemini 3.5 Live Translate. For tighter timing, select **Whisper + LLM + Gemini 3.1 Live**: short selected-tab audio windows go directly to Groq Whisper, which timestamps complete utterances; the free Gemini text-model pool translates the resulting transcript with batch context, and one serialized Gemini 3.1 Flash Live session renders the selected voice. Avorythm preserves the model's natural PCM and anchors precise-mode captions to each generated PCM interval; the approximate Gemini 3.5 transcript path applies one calibrated 2.5-second display offset. Capture progress appears independently while AI processing catches up. Chrome asks for access to `api.groq.com`; both API keys remain session-only, and the Groq transfer requires its own versioned consent. On restricted networks, add `api.groq.com` to your proxy/VPN route (for example through `127.0.0.1:10808`). The extension tests that route before capture, without changing Chrome's global proxy settings.
 
 ### Use the synchronized recorder & player
 
-![Avorythm synchronized recorder and player](../store-assets/en/04-player.png)
+![Avorythm synchronized recorder and player](images/extension/player-en.png)
 
 1. Start the source video in a normal tab, open Avorythm, choose **Synchronized recorder & player**, and press Start.
 2. Wait until the safety lead is ready, then start playback. Capture continues ahead independently.
@@ -108,7 +108,7 @@ The player cannot capture DRM-protected video or Chrome-internal pages. Use **On
 
 ### Subtitles on any page
 
-![Translated subtitle overlay](../store-assets/en/05-subtitles.png)
+![Translated subtitle overlay](images/extension/subtitles-en.png)
 
 Enable Source subtitles, Translated subtitles, or both. Drag the glass subtitle card to another corner, resize it, and scroll longer content. Completed sentences replace the current live line instead of building one endless paragraph.
 
