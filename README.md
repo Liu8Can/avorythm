@@ -25,6 +25,7 @@
 
 <p align="center">
   <a href="README.fa.md">فارسی</a> ·
+  <a href="README.zh-CN.md">简体中文</a> ·
   <a href="https://chromewebstore.google.com/detail/avorythm-live-translation/kbdbbedijheicmmnmoidamdaodjbhjje">Install the Chrome extension</a> ·
   <a href="docs/HELP.md">User guide</a> ·
   <a href="docs/INSTALLATION.md">Installation</a> ·

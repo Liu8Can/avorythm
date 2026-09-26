@@ -2,7 +2,7 @@
 
 # راهنمای کامل Avorythm
 
-[English guide](HELP.md) · [دانلود Avorythm](https://github.com/msmahdinejad/avorythm/releases) · [حریم خصوصی](../PRIVACY.md)
+[English guide](HELP.md) · [简体中文](HELP.zh-CN.md) · [دانلود Avorythm](https://github.com/msmahdinejad/avorythm/releases) · [حریم خصوصی](../PRIVACY.md)
 
 Avorythm دو محصول مستقل دارد. اپ دسکتاپ برای صدای برنامه‌های دیگر و فایل‌های صوتی/ویدئویی است. اکستنشن فقط تب انتخاب‌شده در Chrome یا Edge را ترجمه می‌کند و به اپ، FFmpeg، localhost یا صدای مجازی نیاز ندارد.
 

@@ -50,7 +50,7 @@ function translate(){
   document.documentElement.dir=settings.locale==='fa'?'rtl':'ltr';
   document.querySelectorAll('[data-i18n]').forEach((node)=>{node.textContent=t(node.dataset.i18n);});
   $('#localeToggle').value=settings.locale;
-  $('#helpPageLink').href=`https://github.com/msmahdinejad/avorythm/blob/main/docs/HELP${settings.locale==='fa'?'.fa':''}.md`;
+  $('#helpPageLink').href=`https://github.com/msmahdinejad/avorythm/blob/main/docs/HELP${settings.locale==='fa'?'.fa':settings.locale==='zh-Hans'?'.zh-CN':''}.md`;
 }
 
 function notice(message, success=false){

@@ -253,15 +253,34 @@ test('only shipped simplified-Chinese system locales are localized automatically
   }
 });
 
-test('ships bilingual illustrated user guides and locale-aware extension links', () => {
+test('ships three-language illustrated user guides and locale-aware extension links', () => {
   const english = readFileSync(new URL('../docs/HELP.md', import.meta.url), 'utf8');
   const persian = readFileSync(new URL('../docs/HELP.fa.md', import.meta.url), 'utf8');
+  const chinese = readFileSync(new URL('../docs/HELP.zh-CN.md', import.meta.url), 'utf8');
   const options = readFileSync(new URL('../extension/options.js', import.meta.url), 'utf8');
   const popup = readFileSync(new URL('../extension/popup.js', import.meta.url), 'utf8');
   assert.match(english, /Synchronized recorder & player/);
   assert.match(persian, /ضبط و پلیر هماهنگ/);
+  assert.match(chinese, /桌面应用/);
+  assert.match(chinese, /浏览器扩展/);
+  assert.match(chinese, /images\/extension\/player-zh-CN\.png/);
+  assert.match(options, /settings\.locale==='zh-Hans'\?'\.zh-CN'/);
+  assert.match(popup, /locale === 'zh-Hans' \? '\.zh-CN'/);
   assert.match(options, /helpPageLink/);
   assert.match(popup, /helpLink/);
+});
+
+test('Chinese README and guide point to existing local images', () => {
+  for (const document of ['../README.zh-CN.md', '../docs/HELP.zh-CN.md']) {
+    const source = new URL(document, import.meta.url);
+    const markdown = readFileSync(source, 'utf8');
+    const images = [
+      ...[...markdown.matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)].map((match) => match[1]),
+      ...[...markdown.matchAll(/<img\s+[^>]*src="([^"]+)"/g)].map((match) => match[1])
+    ];
+    assert.ok(images.length > 0);
+    for (const path of images) assert.ok(readFileSync(new URL(path, source)).length > 0, path);
+  }
 });
 
 test('ships the exact localized Chrome Web Store image set', () => {
@@ -271,13 +290,23 @@ test('ships the exact localized Chrome Web Store image set', () => {
     return [png.readUInt32BE(16), png.readUInt32BE(20)];
   };
   const expected = ['01-popup.png', '02-settings.png', '03-sync-settings.png', '04-player.png', '05-subtitles.png'];
-  for (const locale of ['en', 'fa']) {
+  for (const locale of ['en', 'fa', 'zh-CN']) {
     const directory = new URL(`../store-assets/${locale}/`, import.meta.url);
     assert.deepEqual(readdirSync(directory).filter((name) => name.endsWith('.png')).sort(), expected);
     for (const name of expected) assert.deepEqual(dimensions(new URL(name, directory)), [1280, 800]);
   }
-  assert.deepEqual(dimensions(new URL('../store-assets/promo-small.png', import.meta.url)), [440, 280]);
-  assert.deepEqual(dimensions(new URL('../store-assets/promo-marquee.png', import.meta.url)), [1400, 560]);
+  for (const suffix of ['', '-fa', '-zh-CN']) {
+    assert.deepEqual(dimensions(new URL(`../store-assets/promo-small${suffix}.png`, import.meta.url)), [440, 280]);
+    assert.deepEqual(dimensions(new URL(`../store-assets/promo-marquee${suffix}.png`, import.meta.url)), [1400, 560]);
+  }
+  for (const name of ['popup', 'settings', 'privacy', 'sync-settings', 'player', 'subtitles']) {
+    const png = readFileSync(new URL(`../docs/images/extension/${name}-zh-CN.png`, import.meta.url));
+    assert.equal(png.subarray(1, 4).toString(), 'PNG');
+  }
+  assert.deepEqual(dimensions(new URL('../assets/branding/readme-cover-zh-CN.png', import.meta.url)), [1600, 900]);
+  assert.deepEqual(dimensions(new URL('../assets/marketing/desktop-cover-zh-CN.png', import.meta.url)), [1600, 1000]);
+  assert.deepEqual(dimensions(new URL('../assets/branding/github-social-zh-CN.png', import.meta.url)), [1280, 640]);
+  assert.deepEqual(dimensions(new URL('../assets/marketing/launch-poster-zh-CN.png', import.meta.url)), [1080, 1350]);
 });
 
 test('hidden popup notices stay hidden', () => {

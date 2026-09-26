@@ -1,19 +1,19 @@
-# Chrome Web Store visuals / تصاویر فروشگاه کروم
+# Chrome Web Store visuals / تصاویر فروشگاه کروم / Chrome 网上应用店图片
 
-Use these files in the corresponding Chrome Web Store listing fields. They are **listing images**, not part of the extension package.
+These are **listing assets**, not extension-package files. In each localized listing, upload the matching language set. The default/global promos are English. If the Web Store editor exposes only one global promo slot, keep the English image there and localize the screenshots and text. Chinese copy is in [LISTING.zh-CN.md](LISTING.zh-CN.md).
 
-| Field | English listing | Persian listing |
-| --- | --- | --- |
-| Small promo tile (440×280) | `promo-small.png` | `promo-small.png` |
-| Marquee (1400×560) | `promo-marquee.png` | `promo-marquee.png` |
-| Screenshot 1 — start (1280×800) | `en/01-popup.png` | `fa/01-popup.png` |
-| Screenshot 2 — settings (1280×800) | `en/02-settings.png` | `fa/02-settings.png` |
-| Screenshot 3 — synchronized playback settings (1280×800) | `en/03-sync-settings.png` | `fa/03-sync-settings.png` |
-| Screenshot 4 — synchronized player (1280×800) | `en/04-player.png` | `fa/04-player.png` |
-| Screenshot 5 — subtitles (1280×800) | `en/05-subtitles.png` | `fa/05-subtitles.png` |
+| Field | English | فارسی | 简体中文 |
+| --- | --- | --- | --- |
+| Small promo tile · 440×280 | `promo-small.png` | `promo-small-fa.png` | `promo-small-zh-CN.png` |
+| Marquee · 1400×560 | `promo-marquee.png` | `promo-marquee-fa.png` | `promo-marquee-zh-CN.png` |
+| 1. First screen · 1280×800 | `en/01-popup.png` | `fa/01-popup.png` | `zh-CN/01-popup.png` |
+| 2. Four output controls · 1280×800 | `en/02-settings.png` | `fa/02-settings.png` | `zh-CN/02-settings.png` |
+| 3. Synchronized setup · 1280×800 | `en/03-sync-settings.png` | `fa/03-sync-settings.png` | `zh-CN/03-sync-settings.png` |
+| 4. Player · 1280×800 | `en/04-player.png` | `fa/04-player.png` | `zh-CN/04-player.png` |
+| 5. Subtitle overlay · 1280×800 | `en/05-subtitles.png` | `fa/05-subtitles.png` | `zh-CN/05-subtitles.png` |
 
-The images show the current interface with local demo content. The illustrated user guides use separate, uncomposited interface captures in `docs/images/extension/`. Re-capture both sets if the UI changes materially. Do not add the listing images to `extension/` or the uploaded extension ZIP.
+The promo tiles explain AI dubbing, live subtitles, and synchronized playback at a glance. Screenshots contain the actual extension UI with locally generated demo content—no real media or user data. The guides use separate, uncomposited captures in `docs/images/extension/`. Re-capture both sets when the UI changes materially. Do not add these listing images to `extension/` or the uploaded ZIP.
 
----
+برای فهرست فارسی، تصاویر ستون فارسی را بارگذاری کن؛ تصاویر این پوشه داخل فایل نصب اکستنشن قرار نمی‌گیرند. اگر فروشگاه برای پرومو فقط یک تصویر سراسری می‌پذیرد، نسخهٔ انگلیسی را نگه دار و متن و اسکرین‌شات‌های فارسی را جداگانه ثبت کن.
 
-این فایل‌ها را در بخش‌های متناظر صفحهٔ Chrome Web Store بارگذاری کن؛ **جزء بستهٔ خود اکستنشن نیستند**. برای صفحهٔ انگلیسی از پوشهٔ `en` و برای صفحهٔ فارسی از `fa` استفاده کن. دو تصویر تبلیغاتی بین هر دو زبان مشترک‌اند. اسکرین‌شات‌های راهنمای کاربر در `docs/images/extension/` جداگانه قرار دارند و تصاویر ترکیبی تبلیغاتی نیستند. اگر رابط برنامه به‌طور محسوس تغییر کرد، تصاویر هر دو زبان را دوباره بگیر.
+简体中文列表请使用中文列的图片；若宣传图只能全局上传一套，就保留英文宣传图，并单独上传中文文案与截图。

@@ -1,6 +1,6 @@
 # Avorythm user guide
 
-[راهنمای فارسی](HELP.fa.md) · [Download Avorythm](https://github.com/msmahdinejad/avorythm/releases) · [Privacy](../PRIVACY.md)
+[راهنمای فارسی](HELP.fa.md) · [简体中文](HELP.zh-CN.md) · [Download Avorythm](https://github.com/msmahdinejad/avorythm/releases) · [Privacy](../PRIVACY.md)
 
 Avorythm has two independent products. The desktop app handles other desktop programs and uploaded files. The browser extension handles one selected Chrome or Edge tab and does not require the app, FFmpeg, localhost, or a virtual audio device.
 

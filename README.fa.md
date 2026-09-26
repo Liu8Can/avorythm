@@ -26,6 +26,7 @@
 
 <p align="center">
   <a href="README.md">English</a> ·
+  <a href="README.zh-CN.md">简体中文</a> ·
   <a href="https://chromewebstore.google.com/detail/avorythm-live-translation/kbdbbedijheicmmmoidamdaodjbhjje">نصب اکستنشن از Chrome Web Store</a> ·
   <a href="docs/HELP.fa.md">راهنمای کامل</a> ·
   <a href="docs/INSTALLATION.fa.md">نصب و تنظیم صدا</a> ·
